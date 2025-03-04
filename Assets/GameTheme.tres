@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cj6rvfiy1y1br"]
+
+[ext_resource type="FontFile" uid="uid://beot3w1644213" path="res://Assets/fonts/Kenney Pixel.ttf" id="1_lt2oj"]
+
+[resource]
+default_font = ExtResource("1_lt2oj")
+default_font_size = 64
+RichTextLabel/constants/outline_size = 8

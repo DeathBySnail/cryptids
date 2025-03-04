@@ -1,0 +1,136 @@
+[gd_scene load_steps=13 format=3 uid="uid://cbi2w28xfnlj"]
+
+[ext_resource type="Texture2D" uid="uid://b0yqk4alm4o2u" path="res://Assets/textures/table.png" id="1_8kku0"]
+[ext_resource type="Texture2D" uid="uid://bscadm17hn7tr" path="res://Assets/textures/monitor2.png" id="1_kfyoq"]
+[ext_resource type="Texture2D" uid="uid://cncx2k6ux1i8" path="res://Assets/textures/calendar.png" id="1_ta8sy"]
+[ext_resource type="Texture2D" uid="uid://civkdcqgxjdgd" path="res://Assets/textures/keyboard.png" id="2_byi08"]
+[ext_resource type="Shader" uid="uid://cvbeqjn8xeyja" path="res://Assets/textures/Cryptids/cryptid.gdshader" id="4_slw4m"]
+[ext_resource type="Texture2D" uid="uid://dtxfq861525nf" path="res://Assets/textures/Cryptids/fresno.png" id="5_622s4"]
+[ext_resource type="Script" uid="uid://bt4o0x42it2br" path="res://Scripts/autoscroll_label.gd" id="5_bty6i"]
+[ext_resource type="PackedScene" uid="uid://ynmfrkjnnm6r" path="res://wheel.tscn" id="6_tlc8d"]
+[ext_resource type="Texture2D" uid="uid://cdeoyybpl0n32" path="res://Assets/textures/cup.png" id="7_vsnd2"]
+
+[sub_resource type="Gradient" id="Gradient_6edcr"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.0666667, 0.1, 0.133333, 0.2, 0.266667, 0.3, 0.333333, 0.4, 0.466667, 0.5, 0.533333, 0.6, 0.666667, 0.7, 0.733333, 0.8, 0.866667, 0.9, 0.933333, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0.056, 0.03696, 0.0372773, 1, 0.056, 0.03696, 0.0372773, 1, 0.112, 0.07392, 0.0745547, 1, 0.112, 0.07392, 0.0745547, 1, 0.168, 0.11088, 0.111832, 1, 0.168, 0.11088, 0.111832, 1, 0.224, 0.14784, 0.149109, 1, 0.224, 0.14784, 0.149109, 1, 0.336, 0.22176, 0.223664, 1, 0.336, 0.22176, 0.223664, 1, 0.448, 0.29568, 0.298219, 1, 0.448, 0.29568, 0.298219, 1, 0.476, 0.31416, 0.316857, 1, 0.476, 0.31416, 0.316857, 1, 0.504, 0.33264, 0.335496, 1, 0.504, 0.33264, 0.335496, 1, 0.532, 0.35112, 0.354135, 1, 0.532, 0.35112, 0.354135, 1, 0.56, 0.3696, 0.372773, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 15
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_l3gju"]
+gradient = SubResource("Gradient_6edcr")
+width = 256
+height = 256
+fill_from = Vector2(1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x7yox"]
+shader = ExtResource("4_slw4m")
+shader_parameter/tint = Color(0, 0.522189, 2.88785e-07, 1)
+shader_parameter/tint_power = 1.0
+
+[node name="Investigate" type="CanvasLayer"]
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_scale = Vector2(1.1, 1.1)
+scroll_offset = Vector2(-137.8, -103.5)
+
+[node name="Gradient" type="Sprite2D" parent="Parallax2D"]
+z_index = -1000
+position = Vector2(637, 147)
+scale = Vector2(8.46875, 8.46875)
+texture = SubResource("GradientTexture2D_l3gju")
+
+[node name="Calendar" type="Sprite2D" parent="Parallax2D"]
+texture_filter = 1
+position = Vector2(792, 277)
+scale = Vector2(2, 2)
+texture = ExtResource("1_ta8sy")
+
+[node name="Parallax2D2" type="Parallax2D" parent="."]
+scroll_scale = Vector2(1.2, 1.2)
+scroll_offset = Vector2(-132.4, -99.8)
+
+[node name="Table" type="Sprite2D" parent="Parallax2D2"]
+texture_filter = 1
+position = Vector2(600, 737)
+scale = Vector2(3.865, 3.865)
+texture = ExtResource("1_8kku0")
+
+[node name="Monitor" type="Sprite2D" parent="Parallax2D2"]
+texture_filter = 1
+position = Vector2(266, 348)
+scale = Vector2(2, 2)
+texture = ExtResource("1_kfyoq")
+
+[node name="MonitorScreen" type="Node2D" parent="Parallax2D2/Monitor"]
+position = Vector2(14.5, -7)
+skew = -0.129154
+
+[node name="CryptidOutline" type="Sprite2D" parent="Parallax2D2/Monitor/MonitorScreen"]
+material = SubResource("ShaderMaterial_x7yox")
+position = Vector2(49, -68.5)
+texture = ExtResource("5_622s4")
+
+[node name="Label" type="Label" parent="Parallax2D2/Monitor/MonitorScreen"]
+offset_left = -48.5
+offset_top = -91.5
+offset_right = 47.5
+offset_bottom = -43.5
+text = "???
+"
+
+[node name="Label2" type="Label" parent="Parallax2D2/Monitor/MonitorScreen"]
+offset_left = -48.5
+offset_top = -75.0
+offset_right = 71.5
+offset_bottom = -27.0
+text = ",____.
+"
+script = ExtResource("5_bty6i")
+time_fully_displayed = 2.0
+
+[node name="Label3" type="Label" parent="Parallax2D2/Monitor/MonitorScreen"]
+offset_left = -48.5
+offset_top = -66.0
+offset_right = 71.5
+offset_bottom = -18.0
+text = "_._.._
+"
+script = ExtResource("5_bty6i")
+time_until_start_displaying = 1.5
+time_fully_displayed = 1.5
+
+[node name="Label4" type="Label" parent="Parallax2D2/Monitor/MonitorScreen"]
+offset_left = -48.5
+offset_top = -55.0
+offset_right = 71.5
+offset_bottom = -7.0
+text = "___._
+"
+script = ExtResource("5_bty6i")
+time_until_start_displaying = 2.0
+
+[node name="Parallax2D3" type="Parallax2D" parent="."]
+scroll_scale = Vector2(1.3, 1.3)
+scroll_offset = Vector2(-17.4, -107)
+
+[node name="Keyboard" type="Sprite2D" parent="Parallax2D3"]
+texture_filter = 1
+position = Vector2(351, 618)
+scale = Vector2(2, 2)
+texture = ExtResource("2_byi08")
+
+[node name="Cup" type="Sprite2D" parent="Parallax2D3"]
+position = Vector2(643.1, 561)
+scale = Vector2(0.999999, 0.999999)
+texture = ExtResource("7_vsnd2")
+
+[node name="Wheel" parent="." instance=ExtResource("6_tlc8d")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -320.0
+offset_top = 23.0
+offset_right = -20.0
+offset_bottom = 323.0
+grow_horizontal = 0

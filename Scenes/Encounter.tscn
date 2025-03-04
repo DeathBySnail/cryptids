@@ -1,0 +1,101 @@
+[gd_scene load_steps=13 format=3 uid="uid://jtevk3c4b23m"]
+
+[ext_resource type="Script" uid="uid://2ch1yt46wxey" path="res://Scripts/flashlight.gd" id="1_ag4kf"]
+[ext_resource type="Texture2D" uid="uid://bogo76u4fsnym" path="res://Assets/textures/Cryptids/nessie.png" id="2_31eye"]
+[ext_resource type="Texture2D" uid="uid://ddclxmahwdvkv" path="res://Assets/textures/Cryptids/langus.png" id="2_jlqlg"]
+[ext_resource type="Shader" uid="uid://cvbeqjn8xeyja" path="res://Assets/textures/Cryptids/cryptid.gdshader" id="2_r11jg"]
+[ext_resource type="Texture2D" uid="uid://b4qp6qvupmbqr" path="res://Assets/textures/Cryptids/loveland_frog.png" id="3_3mtt6"]
+[ext_resource type="PackedScene" uid="uid://chok6a1xbmvrw" path="res://Scenes/ui.tscn" id="4_j4nd5"]
+[ext_resource type="Texture2D" uid="uid://dtxfq861525nf" path="res://Assets/textures/Cryptids/fresno.png" id="4_ns7h2"]
+[ext_resource type="Texture2D" uid="uid://cjfgn2bomb0m1" path="res://Assets/textures/Cryptids/mothman.png" id="4_tr2wn"]
+[ext_resource type="Texture2D" uid="uid://c5xyb5vjttbg8" path="res://Assets/textures/Cryptids/flatwoods.png" id="5_5ui1s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tojed"]
+shader = ExtResource("2_r11jg")
+shader_parameter/tint = Color(0, 0, 0, 1)
+shader_parameter/tint_power = 0.0
+
+[sub_resource type="Gradient" id="Gradient_rhr7n"]
+offsets = PackedFloat32Array(0, 0.662338)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_53pla"]
+gradient = SubResource("Gradient_rhr7n")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Encounter" type="CanvasLayer"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -5
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.325179, 0.202677, 0.0831855, 1)
+
+[node name="CanvasModulate2" type="CanvasModulate" parent="CanvasLayer"]
+color = Color(0.0562916, 0.0562916, 0.0562916, 1)
+
+[node name="ParallaxBackground" type="Node2D" parent="CanvasLayer"]
+
+[node name="BackgroundLayer" type="Parallax2D" parent="CanvasLayer/ParallaxBackground"]
+scroll_scale = Vector2(1.1, 1.1)
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/ParallaxBackground/BackgroundLayer"]
+texture_filter = 1
+position = Vector2(495, 215)
+scale = Vector2(10, 10)
+texture = ExtResource("2_jlqlg")
+
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer/ParallaxBackground/BackgroundLayer"]
+texture_filter = 1
+position = Vector2(983, 198)
+scale = Vector2(10, 10)
+texture = ExtResource("2_31eye")
+
+[node name="CreatureLayer" type="Parallax2D" parent="CanvasLayer/ParallaxBackground"]
+scroll_scale = Vector2(1.3, 1.3)
+scroll_offset = Vector2(-558.8, 0)
+
+[node name="Cryptid" type="Sprite2D" parent="CanvasLayer/ParallaxBackground/CreatureLayer"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_tojed")
+position = Vector2(1101, 413)
+scale = Vector2(10, 10)
+texture = ExtResource("3_3mtt6")
+
+[node name="Cryptid2" type="Sprite2D" parent="CanvasLayer/ParallaxBackground/CreatureLayer"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_tojed")
+position = Vector2(891, 316)
+scale = Vector2(10, 10)
+texture = ExtResource("4_ns7h2")
+
+[node name="ForeLayer" type="Parallax2D" parent="CanvasLayer/ParallaxBackground"]
+scroll_scale = Vector2(1.695, 1.695)
+scroll_offset = Vector2(-277.3, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/ParallaxBackground/ForeLayer"]
+texture_filter = 1
+position = Vector2(726, 309)
+scale = Vector2(10, 10.994)
+texture = ExtResource("4_tr2wn")
+
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer/ParallaxBackground/ForeLayer"]
+texture_filter = 1
+position = Vector2(325, 327)
+scale = Vector2(10, 10.994)
+texture = ExtResource("5_5ui1s")
+
+[node name="Flashlight" type="PointLight2D" parent="."]
+position = Vector2(250.5, 233.717)
+scale = Vector2(6.95313, 7.03461)
+texture = SubResource("GradientTexture2D_53pla")
+script = ExtResource("1_ag4kf")
+
+[node name="UI" parent="." instance=ExtResource("4_j4nd5")]
