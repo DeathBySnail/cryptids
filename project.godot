@@ -15,10 +15,6 @@ run/main_scene="res://Scenes/main_scene.tscn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
-[autoload]
-
-DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
-
 [dialogue_manager]
 
 runtime/balloon_path="res://addons/dialogue_manager/example_balloon/example_balloon.tscn"
@@ -32,7 +28,7 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
+enabled=PackedStringArray()
 
 [gui]
 

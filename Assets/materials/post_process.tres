@@ -1,0 +1,20 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dj0yhk2uvt170"]
+
+[ext_resource type="Shader" uid="uid://bn1qli1mfg676" path="res://Assets/textures/Cryptids/pixellate.gdshader" id="1_xodb8"]
+
+[resource]
+shader = ExtResource("1_xodb8")
+shader_parameter/resolution = Vector2(320, 180)
+shader_parameter/scan_line_amount = 0.281
+shader_parameter/warp_amount = 0.1
+shader_parameter/noise_amount = 0.008
+shader_parameter/interference_amount = 0.2
+shader_parameter/grille_amount = 0.1
+shader_parameter/grille_size = 1.0
+shader_parameter/vignette_amount = 0.263
+shader_parameter/vignette_intensity = 0.434
+shader_parameter/aberation_amount = 0.242
+shader_parameter/roll_line_amount = 0.042
+shader_parameter/roll_speed = 0.101
+shader_parameter/scan_line_strength = -8.0
+shader_parameter/pixel_strength = -2.0

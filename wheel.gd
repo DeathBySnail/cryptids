@@ -174,14 +174,13 @@ func reset()->void:
 	num_selections = 0 
 	for x:Control in covers: x.visible = false # hides the covers
 
-	current_value_mappings.shuffle() # chooses a random order for our value mappings
+	# current_value_mappings.shuffle() # chooses a random order for our value mappings
 	for x:int in DIRECTIONS.size(): # assigns the slice value to the direction of the corresponding slice
 		for j:int in current_value_mappings.size():
 			slices[j].rotation_degrees = current_value_mappings[j]  # sets the slice rotations to our value mappings
 			if DIRECTIONS[x] == current_value_mappings[j]:
 				slice_values[x] = x+1
 
-	base_numbers.shuffle() # shuffles base numbers so random wheel segments = a random base number
 	_current_value = get_current_wheel_value() 
 	_state = WheelState.AWAITING_SELECTION 
 
@@ -202,6 +201,12 @@ func get_current_wheel_value()->WheelPayload:
 			wp.slice_value = slice_values[x]
 			wp.total_value = wp.base_value * wp.slice_value
 	return wp
+
+# set the base values for the wheel
+func set_base_numbers(numbers: Array[int]):
+	assert(numbers.size() == 4);
+	base_numbers = numbers;
+	_current_value = get_current_wheel_value() #set the current wheel value to our slice and base values
 #endregion
 
 #region helper functions

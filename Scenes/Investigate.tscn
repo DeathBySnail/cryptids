@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cbi2w28xfnlj"]
+[gd_scene load_steps=16 format=3 uid="uid://cbi2w28xfnlj"]
 
 [ext_resource type="Texture2D" uid="uid://b0yqk4alm4o2u" path="res://Assets/textures/table.png" id="1_8kku0"]
 [ext_resource type="Texture2D" uid="uid://bscadm17hn7tr" path="res://Assets/textures/monitor2.png" id="1_kfyoq"]
@@ -27,6 +27,21 @@ fill_from = Vector2(1, 1)
 shader = ExtResource("4_slw4m")
 shader_parameter/tint = Color(0, 0.522189, 2.88785e-07, 1)
 shader_parameter/tint_power = 1.0
+
+[sub_resource type="Gradient" id="Gradient_vpg48"]
+colors = PackedColorArray(1, 1, 1, 0.137255, 0.39, 0.39, 0.39, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hnd6d"]
+gradient = SubResource("Gradient_vpg48")
+width = 8
+height = 8
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="Curve" id="Curve_qgybe"]
+_data = [Vector2(0.00334448, 1), 0.0, 0.0, 0, 0, Vector2(0.772575, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -9.22151, 0.0, 0, 0]
+point_count = 3
 
 [node name="Investigate" type="CanvasLayer"]
 
@@ -121,16 +136,87 @@ scale = Vector2(2, 2)
 texture = ExtResource("2_byi08")
 
 [node name="Cup" type="Sprite2D" parent="Parallax2D3"]
-position = Vector2(643.1, 561)
+position = Vector2(715.4, 545)
 scale = Vector2(0.999999, 0.999999)
 texture = ExtResource("7_vsnd2")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Parallax2D3/Cup"]
+z_index = -1
+position = Vector2(-10, -40.0001)
+amount = 12
+texture = SubResource("GradientTexture2D_hnd6d")
+lifetime = 1.93
+preprocess = 1.47
+explosiveness = 0.34
+lifetime_randomness = 0.16
+fixed_fps = 12
+emission_shape = 3
+emission_rect_extents = Vector2(16.8, 1)
+direction = Vector2(0, -1)
+spread = 8.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 16.13
+initial_velocity_max = 25.81
+scale_amount_curve = SubResource("Curve_qgybe")
 
 [node name="Wheel" parent="." instance=ExtResource("6_tlc8d")]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -320.0
-offset_top = 23.0
-offset_right = -20.0
-offset_bottom = 323.0
+offset_left = -350.0
+offset_top = 34.0
+offset_right = -50.0
+offset_bottom = 334.0
 grow_horizontal = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Wheel"]
+layout_mode = 0
+offset_top = -41.0
+offset_right = 154.0
+offset_bottom = 7.0
+scale = Vector2(2, 2)
+mouse_filter = 2
+text = "Track"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="Wheel"]
+layout_mode = 0
+offset_top = 243.0
+offset_right = 153.0
+offset_bottom = 291.0
+scale = Vector2(2, 2)
+mouse_filter = 2
+text = "Study"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Wheel"]
+layout_mode = 0
+offset_left = 375.0
+offset_top = 26.0
+offset_right = 515.0
+offset_bottom = 102.0
+rotation = 1.57079
+scale = Vector2(2, 2)
+mouse_filter = 2
+text = "Gossip"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="Wheel"]
+layout_mode = 0
+offset_left = -78.0
+offset_top = 296.0
+offset_right = 68.0
+offset_bottom = 372.0
+rotation = 4.71238
+scale = Vector2(2, 2)
+mouse_filter = 2
+text = "Spy"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
