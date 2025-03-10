@@ -95,6 +95,7 @@ texture = ExtResource("5_5ui1s")
 [node name="Flashlight" type="PointLight2D" parent="."]
 position = Vector2(250.5, 233.717)
 scale = Vector2(6.95313, 7.03461)
+range_layer_min = -512
 texture = SubResource("GradientTexture2D_53pla")
 script = ExtResource("1_ag4kf")
 

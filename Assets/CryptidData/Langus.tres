@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CryptidData" load_steps=3 format=3 uid="uid://cnh8iewktxhk1"]
+
+[ext_resource type="Script" uid="uid://by54npmay5it4" path="res://Scripts/Resources/CryptidData.gd" id="1_351e2"]
+[ext_resource type="Texture2D" uid="uid://ddclxmahwdvkv" path="res://Assets/textures/Cryptids/langus.png" id="1_d46ak"]
+
+[resource]
+script = ExtResource("1_351e2")
+Name = "Langus"
+Description = ""
+Tex = ExtResource("1_d46ak")
+Coo = 2
+Joke = 1
+Bribe = -1
+Ignore = -2
+Track = -1
+Gossip = 2
+Study = 1
+Spy = -2

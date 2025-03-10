@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://babhd4f30jvch"]
+[gd_scene load_steps=5 format=3 uid="uid://babhd4f30jvch"]
 
 [ext_resource type="PackedScene" uid="uid://cbi2w28xfnlj" path="res://Scenes/Investigate.tscn" id="2_ukhuj"]
 [ext_resource type="Script" uid="uid://dt14bwlxt46j3" path="res://Scripts/wiggler.gd" id="3_ql7mc"]
+[ext_resource type="PackedScene" uid="uid://jtevk3c4b23m" path="res://Scenes/Encounter.tscn" id="3_x6ack"]
 [ext_resource type="PackedScene" uid="uid://qi782e1e308u" path="res://Scenes/post_process.tscn" id="5_xwko3"]
 
 [node name="MainScene" type="Control"]
@@ -28,7 +29,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("3_ql7mc")
-speed = Vector2(0.43, 0.8)
-amplitude = Vector2(23.2, 13.5)
+
+[node name="Encounter" parent="." instance=ExtResource("3_x6ack")]
 
 [node name="PostProcess" parent="." instance=ExtResource("5_xwko3")]

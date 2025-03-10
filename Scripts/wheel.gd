@@ -15,6 +15,8 @@
 
 ## Love, Shane Scott & Colin McInerney.
 
+enum Directions {Up = 0, Right = 90, Down = 180, Left = 270};
+
 #region Signals
 signal new_dir_selected() ## emitted when a new direction is selected.
 signal new_dir_chosen(payload:WheelPayload) ## emitted when a direction is chosen
@@ -92,13 +94,13 @@ enum TweenType {
 #region Internal Variables
 var base_numbers:Array[int] = [-2,-1,1,2] ## base score values for the slices
 var slice_values:Array[int] = [1,2,3,4] ## slice value multiplier
-var current_value_mappings:Array[int] = [0,90,180,270] ## assigns values to directions; format is as follows: [UP,RIGHT,DOWN,LEFT]
+var current_value_mappings:Array[int] = [Directions.Up,Directions.Right,Directions.Down,Directions.Left] ## assigns values to directions; format is as follows: [UP,RIGHT,DOWN,LEFT]
 enum WheelState {AWAITING_SELECTION,ROTATING,NO_INPUT} ## enum dictating current state of wheel.
 var _state:WheelState = WheelState.AWAITING_SELECTION ## variable containing current state of wheel.
 var num_selections:int = 0 ## how many selections have been chosen
 var _current_value:WheelPayload ## a WheelPayload object containing the wheel's value
 var current_direction:int = 0 ## where the selector currently is.
-const DIRECTIONS:Array[int] = [0,90,180,270] ## rotation value (in degrees) for the wheel directions. [UP,RIGHT,DOWN,LEFT]
+const DIRECTIONS:Array[int] = [Directions.Up,Directions.Right,Directions.Down,Directions.Left] ## rotation value (in degrees) for the wheel directions. [UP,RIGHT,DOWN,LEFT]
 var target_selections:int = 4 ## how many selections are allowed; default is 4.
 #endregion
 
@@ -119,16 +121,16 @@ func _unhandled_input(_event: InputEvent) -> void:
 	
 	# if up, down, left or right is pressed, process that direction input
 	if Input.is_action_just_pressed("ui_up"): 
-		current_direction=0
+		current_direction=Directions.Up
 		process_direction_input(current_direction)
 	if Input.is_action_just_pressed("ui_down"):
-		current_direction=180
+		current_direction=Directions.Down
 		process_direction_input(current_direction)
 	if Input.is_action_just_pressed("ui_left"):
-		current_direction=270
+		current_direction=Directions.Left
 		process_direction_input(current_direction)
 	if Input.is_action_just_pressed("ui_right"):
-		current_direction=90
+		current_direction=Directions.Right
 		process_direction_input(current_direction)
 #endregion
 
@@ -169,8 +171,8 @@ func rotate_slices()->void:
 ## this function resets the minigame.
 func reset()->void:
 	randomize() # ensures that godot will randomize the shuffle of the mappings
-	selector.rotation_degrees = 0 # remove this if you don't want the selector to reset up every time
-	slice_gimbal.rotation_degrees = 0 
+	#selector.rotation_degrees = 0 # remove this if you don't want the selector to reset up every time
+	#slice_gimbal.rotation_degrees = 0 
 	num_selections = 0 
 	for x:Control in covers: x.visible = false # hides the covers
 

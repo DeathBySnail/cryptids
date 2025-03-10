@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="WheelOptionDictionary" load_steps=11 format=3 uid="uid://bkvlsjv23wvm8"]
+
+[ext_resource type="Texture2D" uid="uid://rauxnxys3lqv" path="res://Assets/textures/Reactions/Admire.png" id="1_ggvkb"]
+[ext_resource type="Script" uid="uid://dx4irruamu7hh" path="res://Scripts/Resources/WheelOptionDictionary.gd" id="2_ggvkb"]
+[ext_resource type="Script" uid="uid://c54vyhi2bxc18" path="res://Scripts/Resources/WheelOptionData.gd" id="2_viat7"]
+[ext_resource type="Texture2D" uid="uid://dg8y4rlqy60cb" path="res://Assets/textures/Reactions/joke.png" id="3_pue84"]
+[ext_resource type="Texture2D" uid="uid://ussf1qeqe6al" path="res://Assets/textures/Reactions/bribe.png" id="4_ei6r6"]
+[ext_resource type="Texture2D" uid="uid://cdxo4a6a62e3j" path="res://Assets/textures/Reactions/ignore.png" id="5_bqrfs"]
+
+[sub_resource type="Resource" id="Resource_w62cl"]
+script = ExtResource("2_viat7")
+Name = "Coo"
+Tex = ExtResource("1_ggvkb")
+Stat = 0
+metadata/_custom_type_script = "uid://c54vyhi2bxc18"
+
+[sub_resource type="Resource" id="Resource_pue84"]
+script = ExtResource("2_viat7")
+Name = "Joke"
+Tex = ExtResource("3_pue84")
+Stat = 1
+metadata/_custom_type_script = "uid://c54vyhi2bxc18"
+
+[sub_resource type="Resource" id="Resource_ei6r6"]
+script = ExtResource("2_viat7")
+Name = "Bribe"
+Tex = ExtResource("4_ei6r6")
+Stat = 2
+metadata/_custom_type_script = "uid://c54vyhi2bxc18"
+
+[sub_resource type="Resource" id="Resource_bqrfs"]
+script = ExtResource("2_viat7")
+Name = "Ignore"
+Tex = ExtResource("5_bqrfs")
+Stat = 3
+metadata/_custom_type_script = "uid://c54vyhi2bxc18"
+
+[resource]
+script = ExtResource("2_ggvkb")
+Options = Dictionary[int, ExtResource("2_viat7")]({
+0: SubResource("Resource_w62cl"),
+90: SubResource("Resource_pue84"),
+180: SubResource("Resource_ei6r6"),
+270: SubResource("Resource_bqrfs")
+})

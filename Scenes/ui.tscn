@@ -1,7 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://chok6a1xbmvrw"]
+[gd_scene load_steps=12 format=3 uid="uid://chok6a1xbmvrw"]
 
 [ext_resource type="Script" uid="uid://bajpto7nlvb7k" path="res://Scripts/ui.gd" id="1_r1ou7"]
+[ext_resource type="Resource" uid="uid://bkvlsjv23wvm8" path="res://Assets/WheelOptions/EncounterOptions.tres" id="2_smcll"]
+[ext_resource type="Texture2D" uid="uid://rauxnxys3lqv" path="res://Assets/textures/Reactions/Admire.png" id="3_2246s"]
 [ext_resource type="PackedScene" uid="uid://ynmfrkjnnm6r" path="res://wheel.tscn" id="3_lyknk"]
+[ext_resource type="Resource" uid="uid://cnh8iewktxhk1" path="res://Assets/CryptidData/Langus.tres" id="3_ryf15"]
+[ext_resource type="Texture2D" uid="uid://dg8y4rlqy60cb" path="res://Assets/textures/Reactions/joke.png" id="4_q7pk6"]
+[ext_resource type="Texture2D" uid="uid://ussf1qeqe6al" path="res://Assets/textures/Reactions/bribe.png" id="5_m78vo"]
+[ext_resource type="Texture2D" uid="uid://cdxo4a6a62e3j" path="res://Assets/textures/Reactions/ignore.png" id="6_smcll"]
 
 [sub_resource type="Gradient" id="Gradient_2q7l4"]
 
@@ -20,8 +26,11 @@ draw_center = false
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_r1ou7")
+WheelOptions = ExtResource("2_smcll")
+Cryptid = ExtResource("3_ryf15")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
+visible = false
 offset_left = 35.0
 offset_top = 508.0
 offset_right = 504.0
@@ -33,24 +42,77 @@ layout_mode = 2
 text = "Langus does not like the cut of your jib."
 scroll_active = false
 
-[node name="PanelContainer2" type="PanelContainer" parent="."]
-offset_left = 10.0
-offset_top = 285.0
-offset_right = 157.0
-offset_bottom = 491.0
+[node name="Wheel" parent="." instance=ExtResource("3_lyknk")]
+unique_name_in_owner = true
+offset_left = 44.0
+offset_top = 36.0
+offset_right = 344.0
+offset_bottom = 336.0
+
+[node name="SelectedOption" type="PanelContainer" parent="Wheel"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 361.0
+offset_right = 238.0
+offset_bottom = 424.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_qsu2o")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer2"]
+[node name="SelectedOptionText" type="RichTextLabel" parent="Wheel/SelectedOption"]
+unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
-text = "[center]COO
-JOKE
-BRIBE
-IGNORE"
+text = "IGNORE"
 scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Wheel" parent="." instance=ExtResource("3_lyknk")]
-offset_left = 3.0
-offset_top = -3.0
-offset_right = 303.0
-offset_bottom = 297.0
+[node name="UpImage" type="TextureRect" parent="Wheel"]
+z_index = -1
+layout_mode = 0
+offset_left = 120.0
+offset_top = -39.0
+offset_right = 184.0
+offset_bottom = 25.0
+texture = ExtResource("3_2246s")
+
+[node name="RightImage" type="TextureRect" parent="Wheel"]
+z_index = -1
+layout_mode = 0
+offset_left = 280.0
+offset_top = 118.0
+offset_right = 344.0
+offset_bottom = 182.0
+texture = ExtResource("4_q7pk6")
+
+[node name="DownImage" type="TextureRect" parent="Wheel"]
+z_index = -1
+layout_mode = 0
+offset_left = 125.0
+offset_top = 283.0
+offset_right = 189.0
+offset_bottom = 347.0
+texture = ExtResource("5_m78vo")
+
+[node name="LeftImage" type="TextureRect" parent="Wheel"]
+z_index = -1
+layout_mode = 0
+offset_left = -43.0
+offset_top = 118.0
+offset_right = 21.0
+offset_bottom = 182.0
+texture = ExtResource("6_smcll")
+
+[node name="Debug" type="Control" parent="Wheel"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TotalValue" type="RichTextLabel" parent="Wheel/Debug"]
+layout_mode = 0
+offset_left = 223.0
+offset_top = -9.0
+offset_right = 325.0
+offset_bottom = 39.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
