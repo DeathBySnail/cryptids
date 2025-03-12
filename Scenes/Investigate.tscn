@@ -1,13 +1,13 @@
 [gd_scene load_steps=16 format=3 uid="uid://cbi2w28xfnlj"]
 
 [ext_resource type="Texture2D" uid="uid://b0yqk4alm4o2u" path="res://Assets/textures/table.png" id="1_8kku0"]
+[ext_resource type="Script" uid="uid://bd3eodn84lyis" path="res://Scripts/investigate.gd" id="1_hnd6d"]
 [ext_resource type="Texture2D" uid="uid://bscadm17hn7tr" path="res://Assets/textures/monitor2.png" id="1_kfyoq"]
 [ext_resource type="Texture2D" uid="uid://cncx2k6ux1i8" path="res://Assets/textures/calendar.png" id="1_ta8sy"]
 [ext_resource type="Texture2D" uid="uid://civkdcqgxjdgd" path="res://Assets/textures/keyboard.png" id="2_byi08"]
 [ext_resource type="Shader" uid="uid://cvbeqjn8xeyja" path="res://Assets/textures/Cryptids/cryptid.gdshader" id="4_slw4m"]
 [ext_resource type="Texture2D" uid="uid://dtxfq861525nf" path="res://Assets/textures/Cryptids/fresno.png" id="5_622s4"]
 [ext_resource type="Script" uid="uid://bt4o0x42it2br" path="res://Scripts/autoscroll_label.gd" id="5_bty6i"]
-[ext_resource type="PackedScene" uid="uid://ynmfrkjnnm6r" path="res://wheel.tscn" id="6_tlc8d"]
 [ext_resource type="Texture2D" uid="uid://cdeoyybpl0n32" path="res://Assets/textures/cup.png" id="7_vsnd2"]
 
 [sub_resource type="Gradient" id="Gradient_6edcr"]
@@ -44,6 +44,7 @@ _data = [Vector2(0.00334448, 1), 0.0, 0.0, 0, 0, Vector2(0.772575, 1), 0.0, 0.0,
 point_count = 3
 
 [node name="Investigate" type="CanvasLayer"]
+script = ExtResource("1_hnd6d")
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 scroll_scale = Vector2(1.1, 1.1)
@@ -82,6 +83,7 @@ position = Vector2(14.5, -7)
 skew = -0.129154
 
 [node name="CryptidOutline" type="Sprite2D" parent="Parallax2D2/Monitor/MonitorScreen"]
+unique_name_in_owner = true
 material = SubResource("ShaderMaterial_x7yox")
 position = Vector2(49, -68.5)
 texture = ExtResource("5_622s4")
@@ -158,65 +160,3 @@ gravity = Vector2(0, 0)
 initial_velocity_min = 16.13
 initial_velocity_max = 25.81
 scale_amount_curve = SubResource("Curve_qgybe")
-
-[node name="Wheel" parent="." instance=ExtResource("6_tlc8d")]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -350.0
-offset_top = 34.0
-offset_right = -50.0
-offset_bottom = 334.0
-grow_horizontal = 0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Wheel"]
-layout_mode = 0
-offset_top = -41.0
-offset_right = 154.0
-offset_bottom = 7.0
-scale = Vector2(2, 2)
-mouse_filter = 2
-text = "Track"
-fit_content = true
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="RichTextLabel3" type="RichTextLabel" parent="Wheel"]
-layout_mode = 0
-offset_top = 243.0
-offset_right = 153.0
-offset_bottom = 291.0
-scale = Vector2(2, 2)
-mouse_filter = 2
-text = "Study"
-fit_content = true
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="Wheel"]
-layout_mode = 0
-offset_left = 375.0
-offset_top = 26.0
-offset_right = 515.0
-offset_bottom = 102.0
-rotation = 1.57079
-scale = Vector2(2, 2)
-mouse_filter = 2
-text = "Gossip"
-fit_content = true
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="RichTextLabel4" type="RichTextLabel" parent="Wheel"]
-layout_mode = 0
-offset_left = -78.0
-offset_top = 296.0
-offset_right = 68.0
-offset_bottom = 372.0
-rotation = 4.71238
-scale = Vector2(2, 2)
-mouse_filter = 2
-text = "Spy"
-fit_content = true
-horizontal_alignment = 1
-vertical_alignment = 1

@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://babhd4f30jvch"]
+[gd_scene load_steps=11 format=3 uid="uid://babhd4f30jvch"]
 
+[ext_resource type="Script" uid="uid://gubghyx8ijpv" path="res://Scripts/scene_manager.gd" id="1_iacmt"]
+[ext_resource type="Script" uid="uid://dx4irruamu7hh" path="res://Scripts/Resources/WheelOptionDictionary.gd" id="2_m1efj"]
 [ext_resource type="PackedScene" uid="uid://cbi2w28xfnlj" path="res://Scenes/Investigate.tscn" id="2_ukhuj"]
+[ext_resource type="Resource" uid="uid://cf1g1cmiiio84" path="res://Assets/WheelOptions/InvestigateOptions.tres" id="3_mai8y"]
 [ext_resource type="Script" uid="uid://dt14bwlxt46j3" path="res://Scripts/wiggler.gd" id="3_ql7mc"]
 [ext_resource type="PackedScene" uid="uid://jtevk3c4b23m" path="res://Scenes/Encounter.tscn" id="3_x6ack"]
+[ext_resource type="Resource" uid="uid://bkvlsjv23wvm8" path="res://Assets/WheelOptions/EncounterOptions.tres" id="4_76v2p"]
+[ext_resource type="PackedScene" uid="uid://chok6a1xbmvrw" path="res://Scenes/ui.tscn" id="5_6ev3c"]
 [ext_resource type="PackedScene" uid="uid://qi782e1e308u" path="res://Scenes/post_process.tscn" id="5_xwko3"]
+[ext_resource type="PackedScene" uid="uid://cx20ubcsmiser" path="res://Scenes/cryptid_selection.tscn" id="10_mai8y"]
 
 [node name="MainScene" type="Control"]
 layout_mode = 3
@@ -12,6 +18,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_iacmt")
+SceneWheelOptions = Dictionary[int, ExtResource("2_m1efj")]({
+1: ExtResource("3_mai8y"),
+2: ExtResource("4_76v2p")
+})
 
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -128
@@ -32,4 +43,12 @@ script = ExtResource("3_ql7mc")
 
 [node name="Encounter" parent="." instance=ExtResource("3_x6ack")]
 
+[node name="UI" parent="." instance=ExtResource("5_6ev3c")]
+offset = Vector2(800, 0)
+transform = Transform2D(1, 0, 0, 1, 800, 0)
+
 [node name="PostProcess" parent="." instance=ExtResource("5_xwko3")]
+
+[node name="CryptidSelection" parent="." instance=ExtResource("10_mai8y")]
+
+[connection signal="option_selected" from="CryptidSelection" to="." method="_on_cryptid_selection_option_selected"]

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CryptidData" load_steps=3 format=3 uid="uid://c8m4qv1w48bvc"]
+
+[ext_resource type="Texture2D" uid="uid://b4qp6qvupmbqr" path="res://Assets/textures/Cryptids/loveland_frog.png" id="1_7unpo"]
+[ext_resource type="Script" uid="uid://by54npmay5it4" path="res://Scripts/Resources/CryptidData.gd" id="2_qpsvm"]
+
+[resource]
+script = ExtResource("2_qpsvm")
+Name = "Loveland Frog"
+Description = "Half man, half frog, all love"
+Tex = ExtResource("1_7unpo")
+Coo = 1
+Joke = -1
+Bribe = 2
+Ignore = -2
+Track = 2
+Gossip = 1
+Study = -1
+Spy = -2

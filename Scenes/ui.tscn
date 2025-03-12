@@ -45,9 +45,9 @@ scroll_active = false
 [node name="Wheel" parent="." instance=ExtResource("3_lyknk")]
 unique_name_in_owner = true
 offset_left = 44.0
-offset_top = 36.0
+offset_top = 35.0
 offset_right = 344.0
-offset_bottom = 336.0
+offset_bottom = 335.0
 
 [node name="SelectedOption" type="PanelContainer" parent="Wheel"]
 layout_mode = 0
@@ -70,18 +70,18 @@ vertical_alignment = 1
 z_index = -1
 layout_mode = 0
 offset_left = 120.0
-offset_top = -39.0
+offset_top = -40.0
 offset_right = 184.0
-offset_bottom = 25.0
+offset_bottom = 24.0
 texture = ExtResource("3_2246s")
 
 [node name="RightImage" type="TextureRect" parent="Wheel"]
 z_index = -1
 layout_mode = 0
 offset_left = 280.0
-offset_top = 118.0
+offset_top = 119.0
 offset_right = 344.0
-offset_bottom = 182.0
+offset_bottom = 183.0
 texture = ExtResource("4_q7pk6")
 
 [node name="DownImage" type="TextureRect" parent="Wheel"]

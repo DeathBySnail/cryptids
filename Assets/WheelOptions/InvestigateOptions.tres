@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="WheelOptionDictionary" load_steps=8 format=3 uid="uid://cf1g1cmiiio84"]
+
+[ext_resource type="Script" uid="uid://c54vyhi2bxc18" path="res://Scripts/Resources/WheelOptionData.gd" id="1_4qryl"]
+[ext_resource type="Texture2D" uid="uid://dts1nt1f5rcqk" path="res://Assets/textures/Reactions/track.png" id="2_n3hgc"]
+[ext_resource type="Script" uid="uid://dx4irruamu7hh" path="res://Scripts/Resources/WheelOptionDictionary.gd" id="3_vj2iw"]
+
+[sub_resource type="Resource" id="Resource_ult2l"]
+script = ExtResource("1_4qryl")
+Name = "Track"
+Tex = ExtResource("2_n3hgc")
+Stat = 4
+metadata/_custom_type_script = "uid://c54vyhi2bxc18"
+
+[sub_resource type="Resource" id="Resource_hwg22"]
+script = ExtResource("1_4qryl")
+Name = "Gossip"
+Tex = ExtResource("2_n3hgc")
+Stat = 5
+metadata/_custom_type_script = "uid://c54vyhi2bxc18"
+
+[sub_resource type="Resource" id="Resource_4qryl"]
+script = ExtResource("1_4qryl")
+Name = "Study"
+Tex = ExtResource("2_n3hgc")
+Stat = 6
+metadata/_custom_type_script = "uid://c54vyhi2bxc18"
+
+[sub_resource type="Resource" id="Resource_n3hgc"]
+script = ExtResource("1_4qryl")
+Name = "Spy"
+Tex = ExtResource("2_n3hgc")
+Stat = 7
+metadata/_custom_type_script = "uid://c54vyhi2bxc18"
+
+[resource]
+script = ExtResource("3_vj2iw")
+Options = Dictionary[int, ExtResource("1_4qryl")]({
+0: SubResource("Resource_ult2l"),
+90: SubResource("Resource_hwg22"),
+180: SubResource("Resource_4qryl"),
+270: SubResource("Resource_n3hgc")
+})

@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://cx20ubcsmiser"]
+
+[ext_resource type="Texture2D" uid="uid://757ifqt67wy1" path="res://Assets/textures/monitor.png" id="1_8tbo1"]
+[ext_resource type="PackedScene" uid="uid://b28no6i34m8yr" path="res://Scenes/cryptid_ui_option.tscn" id="1_l3g55"]
+[ext_resource type="Script" uid="uid://d2q5vnu4q83md" path="res://Scripts/cryptid_selection.gd" id="1_lpevr"]
+[ext_resource type="Resource" uid="uid://c8m4qv1w48bvc" path="res://Assets/CryptidData/Loveland_Frog.tres" id="2_2sjhg"]
+
+[node name="CryptidSelection" type="CanvasLayer"]
+script = ExtResource("1_lpevr")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_8tbo1")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect"]
+offset_left = 491.0
+offset_top = 479.0
+offset_right = 824.0
+offset_bottom = 577.5
+bbcode_enabled = true
+text = "Choose a [wave amp=50.0 freq=5.0 connected=1][color=green]Cryptid"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Options" type="HBoxContainer" parent="."]
+offset_left = 282.0
+offset_top = 187.0
+offset_right = 582.0
+offset_bottom = 315.0
+
+[node name="CryptidUIOption" parent="Options" instance=ExtResource("1_l3g55")]
+layout_mode = 2
+
+[node name="CryptidUIOption2" parent="Options" instance=ExtResource("1_l3g55")]
+layout_mode = 2
+Cryptid = ExtResource("2_2sjhg")

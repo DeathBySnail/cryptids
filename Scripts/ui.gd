@@ -1,4 +1,4 @@
-extends CanvasLayer
+class_name UI extends CanvasLayer
 
 @onready var wheel:Wheel = %Wheel
 @onready var selected_option_text: RichTextLabel = %SelectedOptionText
@@ -18,13 +18,14 @@ var wheel_values: Array[int] = [-2,-1,1,2];
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	configure_wheel_from_options()
+	configure_wheel_from_options(WheelOptions)
 	wheel.new_dir_selected.connect(update_wheel_selection);
 	wheel.new_dir_chosen.connect(update_wheel_value);
 	wheel.puzzle_finished.connect(selections_finished);
 	update_wheel_selection()
 
-func configure_wheel_from_options() -> void:
+func configure_wheel_from_options(options:WheelOptionDictionary) -> void:
+	WheelOptions = options;
 	configure_wheel_option(Wheel.Directions.Up, UpImage, 0)
 	configure_wheel_option(Wheel.Directions.Right, RightImage, 1)
 	configure_wheel_option(Wheel.Directions.Down, DownImage, 2)

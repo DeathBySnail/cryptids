@@ -112,6 +112,7 @@ func _ready()->void:
 
 # handles input for our minigame
 func _unhandled_input(_event: InputEvent) -> void:
+	#if !is_processing(): return
 	if _state != WheelState.AWAITING_SELECTION: return
 
 	if Input.is_action_just_pressed("ui_accept"): # ui_accept is spacebar

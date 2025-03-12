@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_351e2")
 Name = "Langus"
-Description = ""
+Description = "It's Langus!"
 Tex = ExtResource("1_d46ak")
 Coo = 2
 Joke = 1
