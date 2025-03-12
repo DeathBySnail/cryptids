@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://chok6a1xbmvrw"]
+[gd_scene load_steps=11 format=3 uid="uid://chok6a1xbmvrw"]
 
 [ext_resource type="Script" uid="uid://bajpto7nlvb7k" path="res://Scripts/ui.gd" id="1_r1ou7"]
 [ext_resource type="Resource" uid="uid://bkvlsjv23wvm8" path="res://Assets/WheelOptions/EncounterOptions.tres" id="2_smcll"]
 [ext_resource type="Texture2D" uid="uid://rauxnxys3lqv" path="res://Assets/textures/Reactions/Admire.png" id="3_2246s"]
 [ext_resource type="PackedScene" uid="uid://ynmfrkjnnm6r" path="res://wheel.tscn" id="3_lyknk"]
-[ext_resource type="Resource" uid="uid://cnh8iewktxhk1" path="res://Assets/CryptidData/Langus.tres" id="3_ryf15"]
 [ext_resource type="Texture2D" uid="uid://dg8y4rlqy60cb" path="res://Assets/textures/Reactions/joke.png" id="4_q7pk6"]
 [ext_resource type="Texture2D" uid="uid://ussf1qeqe6al" path="res://Assets/textures/Reactions/bribe.png" id="5_m78vo"]
 [ext_resource type="Texture2D" uid="uid://cdxo4a6a62e3j" path="res://Assets/textures/Reactions/ignore.png" id="6_smcll"]
@@ -27,7 +26,6 @@ draw_center = false
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_r1ou7")
 WheelOptions = ExtResource("2_smcll")
-Cryptid = ExtResource("3_ryf15")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 visible = false

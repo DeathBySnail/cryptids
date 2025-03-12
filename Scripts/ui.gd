@@ -1,10 +1,9 @@
-class_name UI extends CanvasLayer
+class_name WheelUI extends CanvasLayer
 
 @onready var wheel:Wheel = %Wheel
 @onready var selected_option_text: RichTextLabel = %SelectedOptionText
 
 @export var WheelOptions: WheelOptionDictionary
-@export var Cryptid: CryptidData
 
 @onready var UpImage : TextureRect = $Wheel/UpImage
 @onready var RightImage : TextureRect  = $Wheel/RightImage
@@ -37,8 +36,9 @@ func configure_wheel_option(direction: Wheel.Directions, icon: TextureRect, inde
 	var data: WheelOptionData = WheelOptions.Options.get(direction);
 	icon.texture = data.Tex;
 	var stat: CryptidConsts.Stat = data.Stat;
-	var statValue = Cryptid.get_stat(stat);
-	wheel_values[index] = statValue;
+	if CryptidManager.CurrentCryptid != null:
+		var statValue = CryptidManager.CurrentCryptid.get_stat(stat);
+		wheel_values[index] = statValue;
 	
 	
 func update_wheel_selection() -> void:
