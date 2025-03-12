@@ -51,4 +51,5 @@ transform = Transform2D(1, 0, 0, 1, 800, 0)
 
 [node name="CryptidSelection" parent="." instance=ExtResource("10_mai8y")]
 
+[connection signal="attempts_over" from="UI" to="." method="_on_ui_attempts_over"]
 [connection signal="option_selected" from="CryptidSelection" to="." method="_on_cryptid_selection_option_selected"]

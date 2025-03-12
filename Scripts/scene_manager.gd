@@ -44,3 +44,10 @@ func _on_cryptid_selection_option_selected(cryptid: CryptidData) -> void:
 	InvestigateScene.set_cryptid(cryptid);
 	CryptidPanel.set_visible(false);
 	activate_scene(Scene.Investigate)
+
+
+func _on_ui_attempts_over(score: int) -> void:
+	if CurrentScene == Scene.Investigate:
+		activate_scene(Scene.Encounter);
+	else:
+		activate_scene(Scene.Investigate);

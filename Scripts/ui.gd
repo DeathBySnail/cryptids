@@ -1,7 +1,10 @@
 class_name WheelUI extends CanvasLayer
 
+signal attempts_over(score: int);
+
 @onready var wheel:Wheel = %Wheel
 @onready var selected_option_text: RichTextLabel = %SelectedOptionText
+@onready var attempt_count_label: RichTextLabel = %AttemptCountLabel
 
 @export var WheelOptions: WheelOptionDictionary
 
@@ -14,6 +17,7 @@ class_name WheelUI extends CanvasLayer
 
 var CurrentScore : int = 0
 var wheel_values: Array[int] = [-2,-1,1,2];
+var attempt_count: int = 3;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -31,6 +35,10 @@ func configure_wheel_from_options(options:WheelOptionDictionary) -> void:
 	configure_wheel_option(Wheel.Directions.Left, LeftImage, 3)
 	
 	wheel.set_base_numbers(wheel_values);
+	attempt_count = 3;
+	attempt_count_label.text = str(attempt_count)
+	CurrentScore = 0;
+	wheel.reset();
 
 func configure_wheel_option(direction: Wheel.Directions, icon: TextureRect, index: int) -> void:
 	var data: WheelOptionData = WheelOptions.Options.get(direction);
@@ -47,7 +55,14 @@ func update_wheel_selection() -> void:
 	
 func update_wheel_value(current_value: Wheel.WheelPayload) -> void:
 	CurrentScore += current_value.total_value
+	print("score %d segment sum %d base %d slice %d" % [CurrentScore, current_value.total_value, current_value.base_value, current_value.slice_value])
 	TotalValueText.text = str(CurrentScore);
 	
 func selections_finished() -> void:
-	wheel.reset();
+	attempt_count = attempt_count - 1;
+	attempt_count_label.text = str(attempt_count)
+	if attempt_count > 0:
+		wheel.reset();
+	else:
+		print("attempts over with score %d" % [CurrentScore])
+		attempts_over.emit(CurrentScore)

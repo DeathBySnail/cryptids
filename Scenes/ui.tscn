@@ -114,3 +114,26 @@ offset_bottom = 39.0
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Wheel"]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 434.0
+offset_right = 313.0
+offset_bottom = 482.0
+
+[node name="TotalValue2" type="RichTextLabel" parent="Wheel/HBoxContainer"]
+custom_minimum_size = Vector2(197.2, 0)
+layout_mode = 2
+text = "Attempts "
+fit_content = true
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="AttemptCountLabel" type="RichTextLabel" parent="Wheel/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(61, 0)
+layout_mode = 2
+text = "0"
+fit_content = true
+vertical_alignment = 1
