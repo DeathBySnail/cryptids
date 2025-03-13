@@ -1,5 +1,6 @@
 class_name WheelUI extends CanvasLayer
 
+signal attempt_made(current_score: int);
 signal attempts_over(score: int);
 
 @onready var wheel:Wheel = %Wheel
@@ -63,6 +64,7 @@ func selections_finished() -> void:
 	attempt_count_label.text = str(attempt_count)
 	if attempt_count > 0:
 		wheel.reset();
+		attempt_made.emit(CurrentScore)
 	else:
 		print("attempts over with score %d" % [CurrentScore])
 		attempts_over.emit(CurrentScore)

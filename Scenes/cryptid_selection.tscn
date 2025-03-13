@@ -17,6 +17,7 @@ grow_vertical = 2
 texture = ExtResource("1_8tbo1")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="TextureRect"]
+layout_mode = 0
 offset_left = 491.0
 offset_top = 479.0
 offset_right = 824.0

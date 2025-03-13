@@ -37,19 +37,27 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Investigate" parent="." instance=ExtResource("2_ukhuj")]
+offset = Vector2(-2000, 0)
+transform = Transform2D(1, 0, 0, 1, -2000, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("3_ql7mc")
+amplitude = Vector2(5, 5)
 
 [node name="Encounter" parent="." instance=ExtResource("3_x6ack")]
+offset = Vector2(2000, 0)
+transform = Transform2D(1, 0, 0, 1, 2000, 0)
 
 [node name="UI" parent="." instance=ExtResource("5_6ev3c")]
-offset = Vector2(800, 0)
-transform = Transform2D(1, 0, 0, 1, 800, 0)
+visible = false
+offset = Vector2(878.3, 8.1)
+transform = Transform2D(1, 0, 0, 1, 878.3, 8.1)
 
 [node name="PostProcess" parent="." instance=ExtResource("5_xwko3")]
 
 [node name="CryptidSelection" parent="." instance=ExtResource("10_mai8y")]
+visible = false
 
+[connection signal="attempt_made" from="UI" to="." method="_on_ui_attempt_made"]
 [connection signal="attempts_over" from="UI" to="." method="_on_ui_attempts_over"]
 [connection signal="option_selected" from="CryptidSelection" to="." method="_on_cryptid_selection_option_selected"]
