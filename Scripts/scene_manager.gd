@@ -60,7 +60,9 @@ func activate_scene(scene: Scene) -> void:
 		# bump the camera a bit whilst transitioning
 		var tween:Tween = get_tree().create_tween().bind_node(Camera)
 		tween.set_trans(SceneTweenType)
-		var target_pos: Vector2 = Vector2.RIGHT * 200;
+		
+		var dir = SceneTweenPositions[CurrentScene].normalized();
+		var target_pos: Vector2 = -dir * 200;
 		tween.tween_property(Camera, "position",target_pos,SceneTweenSpeed * 0.5)
 		tween.tween_property(Camera, "position",Vector2.ZERO,SceneTweenSpeed * 0.5)
 	
