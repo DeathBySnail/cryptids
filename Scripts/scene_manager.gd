@@ -5,13 +5,13 @@ enum Scene {None, Investigate, Encounter}
 @export var SceneWheelOptions: Dictionary[Scene, WheelOptionDictionary]
 @export var SceneTweenType: Tween.TransitionType = Tween.TransitionType.TRANS_EXPO;
 @export var SceneTweenSpeed: float = 1.2
-@onready var InvestigateScene : CanvasLayer = $Investigate
-@onready var EncounterScene : CanvasLayer = $Encounter
+@onready var InvestigateScene : GameScene = $Investigate
+@onready var EncounterScene : GameScene = $Encounter
 @onready var WheelPanel : WheelUI = $UI
 @onready var CryptidPanel : CryptidSelection = $CryptidSelection
 @onready var Camera: Camera2D = $Camera2D;
 
-var SceneMap: Dictionary[Scene, CanvasLayer]
+var SceneMap: Dictionary[Scene, GameScene]
 var SceneTweenPositions: Dictionary[Scene, Vector2]
 var CurrentScene: Scene = Scene.None
 
@@ -26,6 +26,7 @@ func _ready() -> void:
 	for scene in SceneMap:
 		SceneMap[scene].set_process(false)
 		SceneMap[scene].set_visible(false)
+		SceneMap[scene].go_to_scene.connect(activate_scene)
 		
 	CryptidPanel.set_visible(true);
 
@@ -46,6 +47,8 @@ func activate_scene(scene: Scene) -> void:
 	
 	if SceneWheelOptions.has(CurrentScene):
 		WheelPanel.configure_wheel_from_options(SceneWheelOptions[CurrentScene])
+		
+		SceneMap[CurrentScene].set_cryptid(CryptidManager.CurrentCryptid)
 		
 		var tween:Tween = get_tree().create_tween().bind_node(SceneMap[CurrentScene])
 		tween.set_trans(SceneTweenType) 
@@ -70,19 +73,16 @@ func activate_scene(scene: Scene) -> void:
 
 func _on_cryptid_selection_option_selected(cryptid: CryptidData) -> void:
 	CryptidManager.SetCurrentCryptid(cryptid);
-	InvestigateScene.set_cryptid(cryptid);
-	EncounterScene.set_cryptid(cryptid);
 	CryptidPanel.set_visible(false);
 	activate_scene(Scene.Investigate)
 
 
 func _on_ui_attempts_over(score: int) -> void:
-	if CurrentScene == Scene.Investigate:
-		activate_scene(Scene.Encounter);
-	else:
-		activate_scene(Scene.Investigate);
+	if CurrentScene != Scene.None:
+		SceneMap[CurrentScene].score_update(score, true)
 
 
 func _on_ui_attempt_made(current_score: int) -> void:
 	# pass to the current scene that a score update has occurred
-	pass
+	if CurrentScene != Scene.None:
+		SceneMap[CurrentScene].score_update(current_score, false)
