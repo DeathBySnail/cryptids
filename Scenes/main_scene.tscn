@@ -60,4 +60,3 @@ visible = false
 
 [connection signal="attempt_made" from="UI" to="." method="_on_ui_attempt_made"]
 [connection signal="attempts_over" from="UI" to="." method="_on_ui_attempts_over"]
-[connection signal="option_selected" from="CryptidSelection" to="." method="_on_cryptid_selection_option_selected"]

@@ -11,7 +11,7 @@ func _ready() -> void:
 	InitialScale = CryptidSprite.scale;
 	CryptidSprite.material.set_shader_parameter("tint_power", 1.0)
 	
-func set_cryptid(cryptid: CryptidData):
+func init(cryptid: CryptidData):
 	CryptidSprite.texture = cryptid.Tex
 	CryptidSprite.material.set_shader_parameter("tint_power", 1.0)
 	CryptidSprite.scale = InitialScale;

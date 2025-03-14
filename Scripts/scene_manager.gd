@@ -50,13 +50,11 @@ func activate_scene(scene: Scene) -> void:
 	
 	if SceneWheelOptions.has(CurrentScene):
 		WheelPanel.configure_wheel_from_options(SceneWheelOptions[CurrentScene])
-		
-		SceneMap[CurrentScene].set_cryptid(CryptidManager.CurrentCryptid)
-		WheelPanel.set_visible(true)
-		WheelPanel.set_process(true)
 	else:
 		WheelPanel.set_visible(false)
 		WheelPanel.set_process(false)
+		
+	SceneMap[CurrentScene].init(CryptidManager.CurrentCryptid)
 		
 	var tween:Tween = get_tree().create_tween().bind_node(SceneMap[CurrentScene])
 	tween.set_trans(SceneTweenType) 
@@ -76,15 +74,6 @@ func activate_scene(scene: Scene) -> void:
 	
 	SceneMap[CurrentScene].set_process(true)
 	SceneMap[CurrentScene].set_visible(true)
-	
-	
-
-
-func _on_cryptid_selection_option_selected(cryptid: CryptidData) -> void:
-	CryptidManager.SetCurrentCryptid(cryptid);
-	#CryptidPanel.set_visible(false);
-	activate_scene(Scene.Investigate)
-
 
 func _on_ui_attempts_over(score: int) -> void:
 	if CurrentScene != Scene.None:
