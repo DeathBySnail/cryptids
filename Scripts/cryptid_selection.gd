@@ -13,5 +13,5 @@ func init(cryptid: CryptidData):
 	FocusControl.grab_focus()
 
 func _on_selection(cryptid: CryptidData) -> void:
-	CryptidManager.SetCurrentCryptid(cryptid);
+	CryptidManager.set_current_cryptid(cryptid);
 	go_to_scene.emit(SceneManager.Scene.Investigate)

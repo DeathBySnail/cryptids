@@ -8,5 +8,8 @@ func init(cryptid: CryptidData):
 func score_update(score: int, finished: bool) -> void:
 	if finished:
 		if score <= 0:
-			CryptidManager.SetCurrentCryptid(CryptidManager.BogusCryptid)
+			CryptidManager.set_current_cryptid(CryptidManager.BogusCryptid)
+		else:
+			CryptidManager.add_investigation_score(score)
+
 		go_to_scene.emit(SceneManager.Scene.Encounter);

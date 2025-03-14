@@ -24,13 +24,13 @@ var attempt_count: int = 3;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	configure_wheel_from_options(WheelOptions)
+	configure_wheel_from_options(WheelOptions, 3)
 	wheel.new_dir_selected.connect(update_wheel_selection);
 	wheel.new_dir_chosen.connect(update_wheel_value);
 	wheel.puzzle_finished.connect(selections_finished);
 	update_wheel_selection()
 
-func configure_wheel_from_options(options:WheelOptionDictionary) -> void:
+func configure_wheel_from_options(options:WheelOptionDictionary, attempts: int) -> void:
 	WheelOptions = options;
 	configure_wheel_option(Wheel.Directions.Up, UpImage, 0)
 	configure_wheel_option(Wheel.Directions.Right, RightImage, 1)
@@ -38,7 +38,7 @@ func configure_wheel_from_options(options:WheelOptionDictionary) -> void:
 	configure_wheel_option(Wheel.Directions.Left, LeftImage, 3)
 	
 	wheel.set_base_numbers(wheel_values);
-	attempt_count = 3;
+	attempt_count = attempts;
 	attempt_count_label.text = str(attempt_count)
 	CurrentScore = 0;
 	wheel.reset(true);

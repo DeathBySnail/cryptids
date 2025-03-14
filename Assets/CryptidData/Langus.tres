@@ -8,6 +8,7 @@ script = ExtResource("1_351e2")
 Name = "Langus"
 Description = "It's Langus!"
 Tex = ExtResource("1_d46ak")
+Bogus = false
 Coo = 2
 Joke = 1
 Bribe = -1

@@ -49,7 +49,10 @@ func activate_scene(scene: Scene) -> void:
 			SceneMap[OldScene].set_visible(false););
 	
 	if SceneWheelOptions.has(CurrentScene):
-		WheelPanel.configure_wheel_from_options(SceneWheelOptions[CurrentScene])
+		var attempts = 3;
+		if CurrentScene == Scene.Encounter:
+			attempts = CryptidManager.get_allowed_encounter_attempts()
+		WheelPanel.configure_wheel_from_options(SceneWheelOptions[CurrentScene], attempts)
 	else:
 		WheelPanel.set_visible(false)
 		WheelPanel.set_process(false)
