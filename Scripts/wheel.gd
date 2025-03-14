@@ -104,10 +104,22 @@ const DIRECTIONS:Array[int] = [Directions.Up,Directions.Right,Directions.Down,Di
 var target_selections:int = 4 ## how many selections are allowed; default is 4.
 #endregion
 
+func angle_to_direction(angle: int) -> int:
+	match angle:
+		Directions.Up:
+			return 0
+		Directions.Right:
+			return 1
+		Directions.Down:
+			return 2
+		Directions.Left:
+			return 3
+	return 0
+	
 #region Built-In Functions
 #called when the scene is loaded into the tree
 func _ready()->void:
-	reset() # all the setup is contained in reset
+	reset(true) # all the setup is contained in reset
 	rotation_finished.connect(end_check) # check if puzzle is completed when rotation is done
 
 # handles input for our minigame
@@ -170,14 +182,15 @@ func rotate_slices()->void:
 	tween.finished.connect(func(): rotation_finished.emit()) # emit rotation finished when done anim
 
 ## this function resets the minigame.
-func reset()->void:
+func reset(new_game: bool)->void:
 	randomize() # ensures that godot will randomize the shuffle of the mappings
 	#selector.rotation_degrees = 0 # remove this if you don't want the selector to reset up every time
-	#slice_gimbal.rotation_degrees = 0 
+	slice_gimbal.rotation_degrees = 0 
 	num_selections = 0 
 	for x:Control in covers: x.visible = false # hides the covers
 
-	# current_value_mappings.shuffle() # chooses a random order for our value mappings
+	if new_game:
+		current_value_mappings.shuffle() # chooses a random order for our value mappings
 	for x:int in DIRECTIONS.size(): # assigns the slice value to the direction of the corresponding slice
 		for j:int in current_value_mappings.size():
 			slices[j].rotation_degrees = current_value_mappings[j]  # sets the slice rotations to our value mappings
@@ -198,17 +211,19 @@ func end_check()->void:
 ## returns the wheel value
 func get_current_wheel_value()->WheelPayload:
 	var wp:WheelPayload = WheelPayload.new()
+	wp.base_value = base_numbers[angle_to_direction(current_direction)]
 	for x:int in current_value_mappings.size():
 		if current_direction == current_value_mappings[x]:
-			wp.base_value = base_numbers[x]
 			wp.slice_value = slice_values[x]
-			wp.total_value = wp.base_value * wp.slice_value
+
+	wp.total_value = wp.base_value * wp.slice_value
 	return wp
 
 # set the base values for the wheel
 func set_base_numbers(numbers: Array[int]):
 	assert(numbers.size() == 4);
 	base_numbers = numbers;
+	
 	_current_value = get_current_wheel_value() #set the current wheel value to our slice and base values
 #endregion
 
@@ -216,12 +231,9 @@ func set_base_numbers(numbers: Array[int]):
 ## +90 degrees to each value mapping for rotation; also adjusts base values so they stay the same
 func _rotate_array(arr:Array)->Array:
 	var a:Array = arr
-	var base_number_map:Dictionary = {a[0]:base_numbers[0],a[1]:base_numbers[1],a[2]:base_numbers[2],a[3]:base_numbers[3]} # saves where our base numbers are so we can make sure they match up after rotating
 	for x:int in a.size():
 		a[x] += 90 # add 90 degrees to each value mapping
 		if int(a[x]) == 360: a[x] = 0  # wrap values back to 0
-		
-		base_numbers[x] = base_number_map.get(a[x]) # makes sure our base numbers stay the same
 	return a
 
 # this is all UI stuff. 

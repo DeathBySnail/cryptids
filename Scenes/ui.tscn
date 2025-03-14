@@ -115,6 +115,46 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="BaseScore" type="RichTextLabel" parent="Wheel/Debug"]
+layout_mode = 0
+offset_left = 199.0
+offset_top = 553.0
+offset_right = 301.0
+offset_bottom = 601.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BaseMultiplier" type="RichTextLabel" parent="Wheel/Debug"]
+layout_mode = 0
+offset_left = 193.0
+offset_top = 504.0
+offset_right = 295.0
+offset_bottom = 552.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BaseMultiplier2" type="RichTextLabel" parent="Wheel/Debug"]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 507.0
+offset_right = 186.0
+offset_bottom = 555.0
+text = "mult"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BaseMultiplier3" type="RichTextLabel" parent="Wheel/Debug"]
+layout_mode = 0
+offset_left = 93.0
+offset_top = 555.0
+offset_right = 195.0
+offset_bottom = 603.0
+text = "slice"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="HBoxContainer" type="HBoxContainer" parent="Wheel"]
 layout_mode = 0
 offset_left = 51.0

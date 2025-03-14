@@ -15,6 +15,8 @@ signal attempts_over(score: int);
 @onready var LeftImage  : TextureRect = $Wheel/LeftImage
 
 @onready var TotalValueText : RichTextLabel = $Wheel/Debug/TotalValue
+@onready var BaseScoreValueText : RichTextLabel = $Wheel/Debug/BaseScore
+@onready var BaseMultiplierValueText : RichTextLabel = $Wheel/Debug/BaseMultiplier
 
 var CurrentScore : int = 0
 var wheel_values: Array[int] = [-2,-1,1,2];
@@ -39,7 +41,7 @@ func configure_wheel_from_options(options:WheelOptionDictionary) -> void:
 	attempt_count = 3;
 	attempt_count_label.text = str(attempt_count)
 	CurrentScore = 0;
-	wheel.reset();
+	wheel.reset(true);
 	set_visible(true)
 	set_process(true)
 
@@ -55,6 +57,8 @@ func configure_wheel_option(direction: Wheel.Directions, icon: TextureRect, inde
 func update_wheel_selection() -> void:
 	var selection: WheelOptionData = WheelOptions.Options.get(wheel.current_direction)
 	selected_option_text.text = selection.Name
+	BaseScoreValueText.text = str(wheel.get_current_wheel_value().base_value)
+	BaseMultiplierValueText.text = str(wheel.get_current_wheel_value().slice_value)
 	
 func update_wheel_value(current_value: Wheel.WheelPayload) -> void:
 	CurrentScore += current_value.total_value
@@ -65,7 +69,7 @@ func selections_finished() -> void:
 	attempt_count = attempt_count - 1;
 	attempt_count_label.text = str(attempt_count)
 	if attempt_count > 0:
-		wheel.reset();
+		wheel.reset(false);
 		attempt_made.emit(CurrentScore)
 	else:
 		print("attempts over with score %d" % [CurrentScore])
