@@ -20,8 +20,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_iacmt")
 SceneWheelOptions = Dictionary[int, ExtResource("2_m1efj")]({
-1: ExtResource("3_mai8y"),
-2: ExtResource("4_76v2p")
+2: ExtResource("3_mai8y"),
+3: ExtResource("4_76v2p")
 })
 
 [node name="Background" type="CanvasLayer" parent="."]

@@ -3,6 +3,7 @@ class_name CryptidData extends Resource
 @export var Name: String
 @export var Description: String
 @export var Tex: Texture2D
+@export var Bogus : bool
 
 @export_group("encounter stats")
 @export var Coo: int

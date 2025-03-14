@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="CryptidData" load_steps=3 format=3 uid="uid://32stj1g3xa4v"]
+
+[ext_resource type="Texture2D" uid="uid://ban1orh1gl1mq" path="res://Assets/textures/Cryptids/dog.png" id="1_36lay"]
+[ext_resource type="Script" uid="uid://by54npmay5it4" path="res://Scripts/Resources/CryptidData.gd" id="2_ierqq"]
+
+[resource]
+script = ExtResource("2_ierqq")
+Name = "Gus"
+Description = "Dammit Gus, not again"
+Tex = ExtResource("1_36lay")
+Bogus = false
+Coo = 2
+Joke = 2
+Bribe = 2
+Ignore = 2
+Track = 2
+Gossip = 2
+Study = 2
+Spy = 2

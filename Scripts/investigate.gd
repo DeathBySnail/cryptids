@@ -7,4 +7,6 @@ func set_cryptid(cryptid: CryptidData):
 
 func score_update(score: int, finished: bool) -> void:
 	if finished:
+		if score <= 0:
+			CryptidManager.SetCurrentCryptid(CryptidManager.BogusCryptid)
 		go_to_scene.emit(SceneManager.Scene.Encounter);

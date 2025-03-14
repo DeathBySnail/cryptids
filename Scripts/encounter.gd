@@ -18,10 +18,16 @@ func set_cryptid(cryptid: CryptidData):
 
 func score_update(score: int, finished: bool) -> void:
 	if finished:
-		CryptidSprite.material.set_shader_parameter("tint_power", 0.0)
-		var tween:Tween = create_tween();
-		tween.set_trans(RevealTransitionType);
-		var target_pos: Vector2 = Vector2.RIGHT * 200;
-		tween.tween_property(CryptidSprite, "scale",InitialScale * RevealScaleMultiplier,ScaleTweenSpeed);
-		tween.tween_interval(2.0);
-		tween.finished.connect(func(): go_to_scene.emit(SceneManager.Scene.Investigate))
+		if score > 0:
+			CryptidSprite.material.set_shader_parameter("tint_power", 0.0)
+			var tween:Tween = create_tween();
+			tween.set_trans(RevealTransitionType);
+			tween.tween_property(CryptidSprite, "scale",InitialScale * RevealScaleMultiplier,ScaleTweenSpeed);
+			tween.tween_interval(2.0);
+			tween.finished.connect(func(): go_to_scene.emit(SceneManager.Scene.Selection))
+		else:
+			var tween:Tween = create_tween();
+			tween.set_trans(RevealTransitionType);
+			tween.tween_property(CryptidSprite, "scale",Vector2.ZERO,ScaleTweenSpeed);
+			tween.tween_interval(2.0);
+			tween.finished.connect(func(): go_to_scene.emit(SceneManager.Scene.Investigate))

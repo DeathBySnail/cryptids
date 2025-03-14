@@ -1,6 +1,6 @@
 class_name SceneManager extends Control
 
-enum Scene {None, Investigate, Encounter}
+enum Scene {None, Selection, Investigate, Encounter}
 
 @export var SceneWheelOptions: Dictionary[Scene, WheelOptionDictionary]
 @export var SceneTweenType: Tween.TransitionType = Tween.TransitionType.TRANS_EXPO;
@@ -20,6 +20,8 @@ func _ready() -> void:
 	SceneTweenPositions[Scene.Investigate] = Vector2.LEFT * 2000.0;
 	SceneMap[Scene.Encounter] = $Encounter
 	SceneTweenPositions[Scene.Encounter] = Vector2.RIGHT * 2000.0;
+	SceneMap[Scene.Selection] = $CryptidSelection
+	SceneTweenPositions[Scene.Selection] = Vector2.RIGHT * 2000.0;
 	WheelPanel.set_visible(false)
 	WheelPanel.set_process(false)
 	
@@ -28,20 +30,21 @@ func _ready() -> void:
 		SceneMap[scene].set_visible(false)
 		SceneMap[scene].go_to_scene.connect(activate_scene)
 		
-	CryptidPanel.set_visible(true);
+	CryptidPanel.set_visible(false);
+	activate_scene(Scene.Selection)
 
 func activate_scene(scene: Scene) -> void:
 	
 	var OldScene = CurrentScene;
 	CurrentScene = scene;
 	
-	if SceneWheelOptions.has(OldScene):
-		var tween:Tween = get_tree().create_tween().bind_node(SceneMap[OldScene])
+	if SceneMap.has(OldScene):
+		var old_tween:Tween = get_tree().create_tween().bind_node(SceneMap[OldScene])
 
-		tween.set_trans(SceneTweenType)
-		var target_pos : Vector2 = SceneTweenPositions[OldScene]
-		tween.tween_property(SceneMap[OldScene], "offset",target_pos,SceneTweenSpeed)
-		tween.finished.connect(func(): 
+		old_tween.set_trans(SceneTweenType)
+		var old_target_pos : Vector2 = SceneTweenPositions[OldScene]
+		old_tween.tween_property(SceneMap[OldScene], "offset",old_target_pos,SceneTweenSpeed)
+		old_tween.finished.connect(func(): 
 			SceneMap[OldScene].set_process(false);
 			SceneMap[OldScene].set_visible(false););
 	
@@ -49,33 +52,37 @@ func activate_scene(scene: Scene) -> void:
 		WheelPanel.configure_wheel_from_options(SceneWheelOptions[CurrentScene])
 		
 		SceneMap[CurrentScene].set_cryptid(CryptidManager.CurrentCryptid)
+		WheelPanel.set_visible(true)
+		WheelPanel.set_process(true)
+	else:
+		WheelPanel.set_visible(false)
+		WheelPanel.set_process(false)
 		
-		var tween:Tween = get_tree().create_tween().bind_node(SceneMap[CurrentScene])
-		tween.set_trans(SceneTweenType) 
-		SceneMap[CurrentScene].offset = SceneTweenPositions[CurrentScene]
-		var target_pos : Vector2 = Vector2.ZERO;
-		tween.tween_property(SceneMap[CurrentScene], "offset",target_pos,SceneTweenSpeed)
+	var tween:Tween = get_tree().create_tween().bind_node(SceneMap[CurrentScene])
+	tween.set_trans(SceneTweenType) 
+	SceneMap[CurrentScene].offset = SceneTweenPositions[CurrentScene]
+	var target_pos : Vector2 = Vector2.ZERO;
+	tween.tween_property(SceneMap[CurrentScene], "offset",target_pos,SceneTweenSpeed)
 		
 	if Camera != null:
 		# bump the camera a bit whilst transitioning
-		var tween:Tween = get_tree().create_tween().bind_node(Camera)
-		tween.set_trans(SceneTweenType)
+		var camera_tween:Tween = get_tree().create_tween().bind_node(Camera)
+		camera_tween.set_trans(SceneTweenType)
 		
 		var dir = SceneTweenPositions[CurrentScene].normalized();
-		var target_pos: Vector2 = -dir * 200;
-		tween.tween_property(Camera, "position",target_pos,SceneTweenSpeed * 0.5)
-		tween.tween_property(Camera, "position",Vector2.ZERO,SceneTweenSpeed * 0.5)
+		var camera_target_pos: Vector2 = -dir * 200;
+		camera_tween.tween_property(Camera, "position",camera_target_pos,SceneTweenSpeed * 0.5)
+		camera_tween.tween_property(Camera, "position",Vector2.ZERO,SceneTweenSpeed * 0.5)
 	
 	SceneMap[CurrentScene].set_process(true)
 	SceneMap[CurrentScene].set_visible(true)
 	
-	WheelPanel.set_visible(true)
-	WheelPanel.set_process(true)
+	
 
 
 func _on_cryptid_selection_option_selected(cryptid: CryptidData) -> void:
 	CryptidManager.SetCurrentCryptid(cryptid);
-	CryptidPanel.set_visible(false);
+	#CryptidPanel.set_visible(false);
 	activate_scene(Scene.Investigate)
 
 

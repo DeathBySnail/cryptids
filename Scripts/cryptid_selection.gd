@@ -1,4 +1,4 @@
-class_name CryptidSelection extends CanvasLayer
+class_name CryptidSelection extends GameScene
 
 signal option_selected(cryptid: CryptidData);
 
