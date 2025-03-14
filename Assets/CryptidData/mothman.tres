@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="CryptidData" load_steps=3 format=3 uid="uid://bpsg230788gpu"]
+
+[ext_resource type="Texture2D" uid="uid://cjfgn2bomb0m1" path="res://Assets/textures/Cryptids/mothman.png" id="1_2uppk"]
+[ext_resource type="Script" uid="uid://by54npmay5it4" path="res://Scripts/Resources/CryptidData.gd" id="2_qbe6u"]
+
+[resource]
+script = ExtResource("2_qbe6u")
+Name = "Mothman"
+Description = "Don't let him bug you"
+Tex = ExtResource("1_2uppk")
+Bogus = false
+Coo = 1
+Joke = -2
+Bribe = 2
+Ignore = -1
+Track = -2
+Gossip = 1
+Study = 2
+Spy = -1

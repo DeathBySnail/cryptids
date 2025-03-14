@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="CryptidData" load_steps=3 format=3 uid="uid://h7bmno42ee4"]
+
+[ext_resource type="Texture2D" uid="uid://c5xyb5vjttbg8" path="res://Assets/textures/Cryptids/flatwoods.png" id="1_hn4oq"]
+[ext_resource type="Script" uid="uid://by54npmay5it4" path="res://Scripts/Resources/CryptidData.gd" id="2_k010n"]
+
+[resource]
+script = ExtResource("2_k010n")
+Name = "Flatwoods Monster"
+Description = "Not his first videogame appearance!"
+Tex = ExtResource("1_hn4oq")
+Bogus = false
+Coo = -1
+Joke = -2
+Bribe = 2
+Ignore = 1
+Track = -1
+Gossip = -2
+Study = 1
+Spy = 2

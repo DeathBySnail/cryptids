@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="CryptidData" load_steps=3 format=3 uid="uid://c8m4qv1w48bvc"]
+
+[ext_resource type="Texture2D" uid="uid://dtxfq861525nf" path="res://Assets/textures/Cryptids/fresno.png" id="1_rvn5w"]
+[ext_resource type="Script" uid="uid://by54npmay5it4" path="res://Scripts/Resources/CryptidData.gd" id="2_cuaj6"]
+
+[resource]
+script = ExtResource("2_cuaj6")
+Name = "Night crawler"
+Description = "Legs Legs Legs"
+Tex = ExtResource("1_rvn5w")
+Bogus = false
+Coo = -2
+Joke = -1
+Bribe = 1
+Ignore = 2
+Track = -2
+Gossip = -1
+Study = 1
+Spy = 2

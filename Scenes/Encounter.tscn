@@ -7,11 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://ctps3olrdtwrq" path="res://Assets/textures/bush_2.png" id="3_is14l"]
 [ext_resource type="Texture2D" uid="uid://cec81tj5d4igr" path="res://Assets/textures/tree_trunk_1.png" id="4_is14l"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tojed"]
-shader = ExtResource("2_r11jg")
-shader_parameter/tint = Color(0, 0, 0, 1)
-shader_parameter/tint_power = 1.0
-
 [sub_resource type="Gradient" id="Gradient_rhr7n"]
 offsets = PackedFloat32Array(0, 0.662338)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -20,6 +15,11 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 gradient = SubResource("Gradient_rhr7n")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tojed"]
+shader = ExtResource("2_r11jg")
+shader_parameter/tint = Color(0, 0, 0, 1)
+shader_parameter/tint_power = 1.0
 
 [node name="Encounter" type="CanvasLayer"]
 layer = 0
@@ -78,6 +78,13 @@ texture = ExtResource("3_is14l")
 [node name="CreatureLayer" type="Parallax2D" parent="ParallaxBackground"]
 scroll_scale = Vector2(1.1, 1.1)
 
+[node name="Flashlight" type="PointLight2D" parent="ParallaxBackground/CreatureLayer"]
+position = Vector2(548, 331)
+scale = Vector2(6.95313, 7.03461)
+range_layer_min = -512
+texture = SubResource("GradientTexture2D_53pla")
+texture_scale = 2.0
+
 [node name="CryptidSprite" type="Sprite2D" parent="ParallaxBackground/CreatureLayer"]
 unique_name_in_owner = true
 texture_filter = 1
@@ -85,12 +92,6 @@ material = SubResource("ShaderMaterial_tojed")
 position = Vector2(489.2, 320)
 scale = Vector2(10, 10)
 texture = ExtResource("3_3mtt6")
-
-[node name="Flashlight" type="PointLight2D" parent="ParallaxBackground/CreatureLayer/CryptidSprite"]
-position = Vector2(5.88, 1.1)
-scale = Vector2(0.695313, 0.703461)
-range_layer_min = -512
-texture = SubResource("GradientTexture2D_53pla")
 
 [node name="ForeLayer" type="Parallax2D" parent="ParallaxBackground"]
 scroll_scale = Vector2(1.675, 1.675)

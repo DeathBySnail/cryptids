@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://cx20ubcsmiser"]
+[gd_scene load_steps=9 format=3 uid="uid://cx20ubcsmiser"]
 
 [ext_resource type="Texture2D" uid="uid://757ifqt67wy1" path="res://Assets/textures/monitor.png" id="1_8tbo1"]
 [ext_resource type="PackedScene" uid="uid://b28no6i34m8yr" path="res://Scenes/cryptid_ui_option.tscn" id="1_l3g55"]
 [ext_resource type="Script" uid="uid://d2q5vnu4q83md" path="res://Scripts/cryptid_selection.gd" id="1_lpevr"]
-[ext_resource type="Resource" uid="uid://c8m4qv1w48bvc" path="res://Assets/CryptidData/Loveland_Frog.tres" id="2_2sjhg"]
+[ext_resource type="Resource" uid="uid://dh008ylr5436y" path="res://Assets/CryptidData/Loveland_Frog.tres" id="2_2sjhg"]
+[ext_resource type="Resource" uid="uid://c8m4qv1w48bvc" path="res://Assets/CryptidData/Nightcrawler.tres" id="5_prcyu"]
+[ext_resource type="Resource" uid="uid://bpsg230788gpu" path="res://Assets/CryptidData/mothman.tres" id="6_be6bi"]
+[ext_resource type="Resource" uid="uid://dx56m7tvtqrbp" path="res://Assets/CryptidData/Catsith.tres" id="7_kdc1q"]
+[ext_resource type="Resource" uid="uid://h7bmno42ee4" path="res://Assets/CryptidData/Flatwoods.tres" id="8_iksbf"]
 
 [node name="CryptidSelection" type="CanvasLayer"]
 script = ExtResource("1_lpevr")
@@ -33,7 +37,7 @@ offset_left = 257.0
 offset_top = 178.0
 offset_right = 413.0
 offset_bottom = 454.0
-columns = 6
+columns = 3
 
 [node name="CryptidUIOption" parent="Options" instance=ExtResource("1_l3g55")]
 layout_mode = 2
@@ -41,3 +45,19 @@ layout_mode = 2
 [node name="CryptidUIOption2" parent="Options" instance=ExtResource("1_l3g55")]
 layout_mode = 2
 Cryptid = ExtResource("2_2sjhg")
+
+[node name="CryptidUIOption3" parent="Options" instance=ExtResource("1_l3g55")]
+layout_mode = 2
+Cryptid = ExtResource("5_prcyu")
+
+[node name="CryptidUIOption4" parent="Options" instance=ExtResource("1_l3g55")]
+layout_mode = 2
+Cryptid = ExtResource("6_be6bi")
+
+[node name="CryptidUIOption5" parent="Options" instance=ExtResource("1_l3g55")]
+layout_mode = 2
+Cryptid = ExtResource("7_kdc1q")
+
+[node name="CryptidUIOption6" parent="Options" instance=ExtResource("1_l3g55")]
+layout_mode = 2
+Cryptid = ExtResource("8_iksbf")

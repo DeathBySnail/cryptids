@@ -13,10 +13,10 @@ shader_parameter/tint_power = 1.0
 [node name="CryptidUIOption" type="MarginContainer"]
 offset_right = 148.0
 offset_bottom = 128.0
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
 script = ExtResource("1_wt5qf")
 Cryptid = ExtResource("2_povw2")
 
@@ -29,10 +29,12 @@ texture = ExtResource("2_wt5qf")
 stretch_mode = 5
 
 [node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(156.5, 0)
 layout_mode = 2
 tooltip_text = "was this?"
-text = "Langus
-"
+theme_override_font_sizes/font_size = 44
+text = "Flatwoods Monster"
+autowrap_mode = 3
 icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
