@@ -27,6 +27,7 @@ draw_center = false
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_r1ou7")
 WheelOptions = ExtResource("2_smcll")
+ScoreForBadRound = -4
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 visible = false

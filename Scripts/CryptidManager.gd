@@ -31,7 +31,7 @@ func get_investigation_score() -> int:
 	
 func get_allowed_encounter_attempts() -> int:
 	var investigate_score: int = get_current_progression().investigation_score;
-	return maxi(1, investigate_score / 10)
+	return maxi(1, investigate_score / 7)
 	
 func get_hints(cryptid: CryptidData) -> Array[String]:
 	var hints: Array[String];

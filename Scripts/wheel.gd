@@ -96,7 +96,7 @@ var base_numbers:Array[int] = [-2,-1,1,2] ## base score values for the slices
 var slice_values:Array[int] = [1,2,3,4] ## slice value multiplier
 var current_value_mappings:Array[int] = [Directions.Up,Directions.Right,Directions.Down,Directions.Left] ## assigns values to directions; format is as follows: [UP,RIGHT,DOWN,LEFT]
 enum WheelState {AWAITING_SELECTION,ROTATING,NO_INPUT} ## enum dictating current state of wheel.
-var _state:WheelState = WheelState.AWAITING_SELECTION ## variable containing current state of wheel.
+var _state:WheelState = WheelState.NO_INPUT ## variable containing current state of wheel.
 var num_selections:int = 0 ## how many selections have been chosen
 var _current_value:WheelPayload ## a WheelPayload object containing the wheel's value
 var current_direction:int = 0 ## where the selector currently is.
@@ -121,10 +121,11 @@ func angle_to_direction(angle: int) -> int:
 func _ready()->void:
 	reset(true) # all the setup is contained in reset
 	rotation_finished.connect(end_check) # check if puzzle is completed when rotation is done
+	# wait for an actual ready call to begin the minigame
+	_state = WheelState.NO_INPUT
 
 # handles input for our minigame
 func _unhandled_input(_event: InputEvent) -> void:
-	#if !is_processing(): return
 	if _state != WheelState.AWAITING_SELECTION: return
 
 	if Input.is_action_just_pressed("ui_accept"): # ui_accept is spacebar

@@ -28,11 +28,9 @@ var attempt_count: int = 3;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	configure_wheel_from_options(WheelOptions, 3)
 	wheel.new_dir_selected.connect(update_wheel_selection);
 	wheel.new_dir_chosen.connect(update_wheel_value);
 	wheel.puzzle_finished.connect(selections_finished);
-	update_wheel_selection()
 
 func configure_wheel_from_options(options:WheelOptionDictionary, attempts: int) -> void:
 	WheelOptions = options;
@@ -49,6 +47,7 @@ func configure_wheel_from_options(options:WheelOptionDictionary, attempts: int) 
 	wheel.reset(true);
 	set_visible(true)
 	set_process(true)
+	update_wheel_selection()
 
 func configure_wheel_option(direction: Wheel.Directions, icon: TextureRect, index: int) -> void:
 	var data: WheelOptionData = WheelOptions.Options.get(direction);
@@ -67,20 +66,19 @@ func update_wheel_selection() -> void:
 	
 func update_wheel_value(current_value: Wheel.WheelPayload) -> void:
 	RoundScore += current_value.total_value
-	print("score %d segment sum %d base %d slice %d" % [CurrentScore, current_value.total_value, current_value.base_value, current_value.slice_value])
+	print("score %d round %d segment sum %d base %d slice %d" % [CurrentScore,RoundScore, current_value.total_value, current_value.base_value, current_value.slice_value])
 	TotalValueText.text = str(CurrentScore);
+	
+	var RoundScoreText: String = "[shake][color=#e43b44]POOR"
+	if current_value.total_value >= ScoreForGoodRound:
+		RoundScoreText = "[wave][color=#63c74d]NICE!"
+	elif current_value.total_value > ScoreForBadRound:
+		RoundScoreText = "[shake rate=10][color=#c0cbdc]MEH"
+	RoundReaction.show_text(RoundScoreText)
 	
 func selections_finished() -> void:
 	attempt_count = attempt_count - 1;
 	attempt_count_label.text = str(attempt_count)
-	
-	var RoundScoreText: String = "[shake][color=#e43b44]POOR"
-	if RoundScore >= ScoreForGoodRound:
-		RoundScoreText = "[wave][color=#63c74d]NICE!"
-	elif RoundScore > ScoreForBadRound:
-		RoundScoreText = "[shake rate=10][color=#c0cbdc]MEH"
-	RoundReaction.show_text(RoundScoreText)
-		
 	
 	CurrentScore += RoundScore
 	RoundScore = 0
