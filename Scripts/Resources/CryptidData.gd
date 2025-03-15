@@ -4,12 +4,14 @@ class_name CryptidData extends Resource
 @export var Description: String
 @export var Tex: Texture2D
 @export var Bogus : bool
+@export var BefriendScore: int = 15
 
 @export_group("encounter stats")
 @export var Coo: int
 @export var Joke: int
 @export var Bribe: int
 @export var Ignore: int
+@export var EncounterHints: Array[String]
 
 @export_group("investigate stats")
 @export var Track: int

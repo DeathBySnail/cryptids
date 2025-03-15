@@ -21,7 +21,7 @@ func _ready() -> void:
 	SceneMap[Scene.Encounter] = $Encounter
 	SceneTweenPositions[Scene.Encounter] = Vector2.RIGHT * 2000.0;
 	SceneMap[Scene.Selection] = $CryptidSelection
-	SceneTweenPositions[Scene.Selection] = Vector2.RIGHT * 2000.0;
+	SceneTweenPositions[Scene.Selection] = Vector2.DOWN * 2000.0;
 	WheelPanel.set_visible(false)
 	WheelPanel.set_process(false)
 	

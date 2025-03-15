@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CryptidData" load_steps=3 format=3 uid="uid://b3qosodjccnft"]
+
+[ext_resource type="Texture2D" uid="uid://bvgk4wdtw7fgx" path="res://Assets/textures/Cryptids/passenger.png" id="1_iqv2x"]
+[ext_resource type="Script" uid="uid://by54npmay5it4" path="res://Scripts/Resources/CryptidData.gd" id="2_73lws"]
+
+[resource]
+script = ExtResource("2_73lws")
+Name = "Passenger"
+Description = "What is dove?"
+Tex = ExtResource("1_iqv2x")
+Bogus = false
+BefriendScore = 15
+Coo = -2
+Joke = -1
+Bribe = 1
+Ignore = 2
+EncounterHints = Array[String](["[wave]shy", "[wave]aloof", "[wave]broke"])
+Track = -1
+Gossip = 1
+Study = 2
+Spy = -2

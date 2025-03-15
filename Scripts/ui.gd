@@ -6,8 +6,11 @@ signal attempts_over(score: int);
 @onready var wheel:Wheel = %Wheel
 @onready var selected_option_text: RichTextLabel = %SelectedOptionText
 @onready var attempt_count_label: RichTextLabel = %AttemptCountLabel
+@onready var RoundReaction: PopupText = %RoundReaction
 
 @export var WheelOptions: WheelOptionDictionary
+@export var ScoreForGoodRound : int = 4
+@export var ScoreForBadRound : int = -1
 
 @onready var UpImage : TextureRect = $Wheel/UpImage
 @onready var RightImage : TextureRect  = $Wheel/RightImage
@@ -19,6 +22,7 @@ signal attempts_over(score: int);
 @onready var BaseMultiplierValueText : RichTextLabel = $Wheel/Debug/BaseMultiplier
 
 var CurrentScore : int = 0
+var RoundScore : int = 0
 var wheel_values: Array[int] = [-2,-1,1,2];
 var attempt_count: int = 3;
 
@@ -41,6 +45,7 @@ func configure_wheel_from_options(options:WheelOptionDictionary, attempts: int) 
 	attempt_count = attempts;
 	attempt_count_label.text = str(attempt_count)
 	CurrentScore = 0;
+	RoundScore = 0;
 	wheel.reset(true);
 	set_visible(true)
 	set_process(true)
@@ -61,13 +66,25 @@ func update_wheel_selection() -> void:
 	BaseMultiplierValueText.text = str(wheel.get_current_wheel_value().slice_value)
 	
 func update_wheel_value(current_value: Wheel.WheelPayload) -> void:
-	CurrentScore += current_value.total_value
+	RoundScore += current_value.total_value
 	print("score %d segment sum %d base %d slice %d" % [CurrentScore, current_value.total_value, current_value.base_value, current_value.slice_value])
 	TotalValueText.text = str(CurrentScore);
 	
 func selections_finished() -> void:
 	attempt_count = attempt_count - 1;
 	attempt_count_label.text = str(attempt_count)
+	
+	var RoundScoreText: String = "[shake][color=#e43b44]POOR"
+	if RoundScore >= ScoreForGoodRound:
+		RoundScoreText = "[wave][color=#63c74d]NICE!"
+	elif RoundScore > ScoreForBadRound:
+		RoundScoreText = "[shake rate=10][color=#c0cbdc]MEH"
+	RoundReaction.show_text(RoundScoreText)
+		
+	
+	CurrentScore += RoundScore
+	RoundScore = 0
+	
 	if attempt_count > 0:
 		wheel.reset(false);
 		attempt_made.emit(CurrentScore)

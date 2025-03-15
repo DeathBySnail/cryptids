@@ -78,6 +78,52 @@ texture = ExtResource("3_is14l")
 [node name="CreatureLayer" type="Parallax2D" parent="ParallaxBackground"]
 scroll_scale = Vector2(1.1, 1.1)
 
+[node name="Hints" type="Control" parent="ParallaxBackground/CreatureLayer"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Hint1" type="RichTextLabel" parent="ParallaxBackground/CreatureLayer/Hints"]
+layout_mode = 0
+offset_left = 333.0
+offset_top = 31.0
+offset_right = 469.0
+offset_bottom = 79.0
+mouse_filter = 2
+bbcode_enabled = true
+text = "[wave]goodboy"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Hint2" type="RichTextLabel" parent="ParallaxBackground/CreatureLayer/Hints"]
+layout_mode = 0
+offset_left = 620.0
+offset_top = 24.0
+offset_right = 756.0
+offset_bottom = 72.0
+mouse_filter = 2
+bbcode_enabled = true
+text = "[wave amp=50.0 freq=5.0 connected=1]Lonely"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Hint3" type="RichTextLabel" parent="ParallaxBackground/CreatureLayer/Hints"]
+layout_mode = 0
+offset_left = 727.0
+offset_top = 214.0
+offset_right = 863.0
+offset_bottom = 262.0
+mouse_filter = 2
+bbcode_enabled = true
+text = "[wave amp=50.0 freq=5.0 connected=1]Lonely"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
 [node name="Flashlight" type="PointLight2D" parent="ParallaxBackground/CreatureLayer"]
 position = Vector2(548, 331)
 scale = Vector2(6.95313, 7.03461)

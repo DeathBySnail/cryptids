@@ -1,12 +1,14 @@
 extends GameScene
 
 @onready var CryptidSprite: Sprite2D = %CryptidSprite
+@onready var HintTexts: Control = %Hints
 
 @export var RevealTransitionType : Tween.TransitionType = Tween.TransitionType.TRANS_ELASTIC
 @export var RevealScaleMultiplier: float = 2.0;
 @export var ScaleTweenSpeed: float = 0.8;
 
 var InitialScale : Vector2 = Vector2.ONE;
+var TargetScore : int = 0;
 func _ready() -> void:
 	InitialScale = CryptidSprite.scale;
 	CryptidSprite.material.set_shader_parameter("tint_power", 1.0)
@@ -15,10 +17,23 @@ func init(cryptid: CryptidData):
 	CryptidSprite.texture = cryptid.Tex
 	CryptidSprite.material.set_shader_parameter("tint_power", 1.0)
 	CryptidSprite.scale = InitialScale;
+	TargetScore = cryptid.BefriendScore;
+	
+	var unlocked_hints : Array[String] = CryptidManager.get_hints(cryptid);
+	var hint_counter : int = 0;
+	for HintTextBox in HintTexts.get_children():
+		if HintTextBox is RichTextLabel:
+			if hint_counter < unlocked_hints.size():
+				HintTextBox.text = unlocked_hints[hint_counter]	;
+			else:
+				HintTextBox.text = "[wave]???"
+			hint_counter = hint_counter + 1
+			
+		pass
 
 func score_update(score: int, finished: bool) -> void:
 	if finished:
-		if score > 0:
+		if score >= TargetScore:
 			CryptidSprite.material.set_shader_parameter("tint_power", 0.0)
 			var tween:Tween = create_tween();
 			tween.set_trans(RevealTransitionType);

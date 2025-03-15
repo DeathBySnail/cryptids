@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CryptidData" load_steps=3 format=3 uid="uid://bw4t12m8tit6l"]
+
+[ext_resource type="Texture2D" uid="uid://bogo76u4fsnym" path="res://Assets/textures/Cryptids/nessie.png" id="1_m6y52"]
+[ext_resource type="Script" uid="uid://by54npmay5it4" path="res://Scripts/Resources/CryptidData.gd" id="2_556xa"]
+
+[resource]
+script = ExtResource("2_556xa")
+Name = "Nessie"
+Description = "loch who's here!"
+Tex = ExtResource("1_m6y52")
+Bogus = false
+BefriendScore = 15
+Coo = -1
+Joke = 1
+Bribe = -2
+Ignore = 2
+EncounterHints = Array[String](["[wave]stoic", "[wave]joker", "[wave]honest"])
+Track = -2
+Gossip = 2
+Study = -1
+Spy = 1

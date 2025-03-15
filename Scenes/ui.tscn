@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://chok6a1xbmvrw"]
+[gd_scene load_steps=12 format=3 uid="uid://chok6a1xbmvrw"]
 
 [ext_resource type="Script" uid="uid://bajpto7nlvb7k" path="res://Scripts/ui.gd" id="1_r1ou7"]
 [ext_resource type="Resource" uid="uid://bkvlsjv23wvm8" path="res://Assets/WheelOptions/EncounterOptions.tres" id="2_smcll"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dg8y4rlqy60cb" path="res://Assets/textures/Reactions/joke.png" id="4_q7pk6"]
 [ext_resource type="Texture2D" uid="uid://ussf1qeqe6al" path="res://Assets/textures/Reactions/bribe.png" id="5_m78vo"]
 [ext_resource type="Texture2D" uid="uid://cdxo4a6a62e3j" path="res://Assets/textures/Reactions/ignore.png" id="6_smcll"]
+[ext_resource type="Script" uid="uid://bw6nwu2gsv3sv" path="res://Scripts/popup_text.gd" id="8_ryf15"]
 
 [sub_resource type="Gradient" id="Gradient_2q7l4"]
 
@@ -163,7 +164,7 @@ offset_top = 434.0
 offset_right = 313.0
 offset_bottom = 482.0
 
-[node name="TotalValue2" type="RichTextLabel" parent="Wheel/HBoxContainer"]
+[node name="AttemptLabel" type="RichTextLabel" parent="Wheel/HBoxContainer"]
 custom_minimum_size = Vector2(197.2, 0)
 layout_mode = 2
 text = "Attempts "
@@ -178,3 +179,46 @@ layout_mode = 2
 text = "0"
 fit_content = true
 vertical_alignment = 1
+
+[node name="Control" type="Control" parent="Wheel"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RoundReaction" type="RichTextLabel" parent="Wheel/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 48.0
+bbcode_enabled = true
+text = "[wave][color=#63c74d]NICE!"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("8_ryf15")
+seconds_to_full_display = 0.3
+seconds_to_vanish = 1.2
+default_text = "[wave][color=#63c74d]NICE!"
+
+[node name="RoundReaction2" type="RichTextLabel" parent="Wheel/Control"]
+visible = false
+layout_mode = 0
+offset_left = 150.0
+offset_top = 2.0
+offset_right = 246.0
+offset_bottom = 50.0
+bbcode_enabled = true
+text = "[shake rate=10][color=#c0cbdc]MEH"
+fit_content = true
+autowrap_mode = 0
+
+[node name="RoundReaction3" type="RichTextLabel" parent="Wheel/Control"]
+visible = false
+layout_mode = 0
+offset_left = 265.0
+offset_top = 2.0
+offset_right = 361.0
+offset_bottom = 50.0
+bbcode_enabled = true
+text = "[shake][color=#e43b44]POOR"
+fit_content = true
+autowrap_mode = 0
