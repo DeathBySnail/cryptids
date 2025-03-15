@@ -35,20 +35,32 @@ func init(cryptid: CryptidData):
 		pass
 
 func score_update(score: int, finished: bool) -> void:
+	var display_message: String;
+	var destination_scene: SceneManager.Scene = SceneManager.Scene.Investigate
 	if finished:
+		var tween:Tween = create_tween();
 		if score >= TargetScore:
+			if CryptidManager.get_current_progression().befriended_count == 0:
+				destination_scene = SceneManager.Scene.Details
+			else:
+				destination_scene = SceneManager.Scene.Selection
+
+			display_message = CryptidManager.CurrentCryptid.encounter_success_message()
 			CryptidSprite.set_instance_shader_parameter("tint_power", 0.0)
-			var tween:Tween = create_tween();
+
 			tween.set_trans(RevealTransitionType);
 			tween.tween_property(CryptidSprite, "scale",InitialScale * RevealScaleMultiplier,ScaleTweenSpeed);
 			tween.tween_interval(2.0);
-			tween.finished.connect(func(): go_to_scene.emit(SceneManager.Scene.Selection))
 			CryptidManager.befriend(CryptidManager.CurrentCryptid)
 		else:
-			var tween:Tween = create_tween();
+			display_message = CryptidManager.CurrentCryptid.encounter_fail_message()
 			tween.set_trans(RevealTransitionType);
 			tween.set_parallel(true)
 			tween.tween_property(CryptidSprite, "scale",Vector2.ZERO,ScaleTweenSpeed);
 			tween.tween_property(CryptidSprite, "position",Vector2.UP * 500.,ScaleTweenSpeed).as_relative();
 			tween.chain().tween_interval(2.0);
-			tween.finished.connect(func(): go_to_scene.emit(SceneManager.Scene.Investigate))
+
+		if !display_message.is_empty():
+			DialogueManager.show_text(display_message).finished.connect(func(): go_to_scene.emit(destination_scene))
+		else:
+			tween.finished.connect(func(): go_to_scene.emit(destination_scene))

@@ -14,6 +14,8 @@ class_name CryptidData extends Resource
 @export var Bribe: int
 @export var Ignore: int
 @export var EncounterHints: Array[String]
+@export var EncounterSuccessMessages : Array[String]
+@export var EncounterFailMessages : Array[String]
 
 @export_group("investigate stats")
 @export var Track: int
@@ -42,3 +44,9 @@ func get_stat(stat: CryptidConsts.Stat) -> int:
 		CryptidConsts.Stat.Spy:
 			return Spy;
 	return 0;
+
+func encounter_success_message() -> String:
+	return EncounterSuccessMessages.pick_random();
+	
+func encounter_fail_message() -> String:
+	return EncounterFailMessages.pick_random();

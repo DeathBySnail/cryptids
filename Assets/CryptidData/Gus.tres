@@ -7,8 +7,8 @@
 script = ExtResource("2_ierqq")
 Name = "Gus"
 Description = "Dammit Gus, not again"
-History = ""
-WebLink = ""
+History = "Short for \"Bogus\", [wave]GUS[/wave] is your constant companion and always there in case a treato is near. [wave]GUS[/wave] is not a cryptid, he's just a goodboi.[p][shake]BORF BORF"
+WebLink = "[url=https://en.wikipedia.org/wiki/Dog]Wikipedia"
 Tex = ExtResource("1_36lay")
 Bogus = true
 BefriendScore = 0
@@ -17,6 +17,8 @@ Joke = 2
 Bribe = 2
 Ignore = 0
 EncounterHints = Array[String](["[wave]goodboy", "[wave]borf", "[wave]treats?"])
+EncounterSuccessMessages = Array[String](["It's [wave]GUS![/wave] He checkin out what you dooin... Guess you need to do more research.", "[wave]GUS GUS GUS[/wave] \"Got any treats?\" his face tells you as you retreat from a eventless night.", "[wave]GUS[/wave] starts wagging as he knows treat time is here. [p]No cryptids tonight..."])
+EncounterFailMessages = Array[String](["[shake]How did you even get this? He's supposed to LOVE you"])
 Track = 2
 Gossip = 2
 Study = 2

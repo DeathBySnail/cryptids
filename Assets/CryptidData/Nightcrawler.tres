@@ -17,6 +17,8 @@ Joke = -1
 Bribe = 1
 Ignore = 2
 EncounterHints = Array[String](["[wave]sneaky", "[wave]greedy", "[wave]aloof"])
+EncounterSuccessMessages = Array[String](["It's the Fresno Nightcrawler! A litter of smaller nightcrawlers follows. She's a mother!"])
+EncounterFailMessages = Array[String](["Unfortunately your strategy didn't have legs. Unlike the nightcrawler, who is in fact [shake]all[/shake] legs.", "The nightcrawler's face [p](or is it a leg?) [p]becomes red with [color=#e43b44][shake]embarassment[/shake][/color]. Perhaps a gentler approach is needed?"])
 Track = -2
 Gossip = -1
 Study = 1

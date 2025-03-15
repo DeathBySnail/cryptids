@@ -21,3 +21,7 @@ func _on_selection(cryptid: CryptidData) -> void:
 		go_to_scene.emit(SceneManager.Scene.Details)
 	else:
 		go_to_scene.emit(SceneManager.Scene.Investigate)
+
+
+func _on_social_link_meta_clicked(meta: Variant) -> void:
+	OS.shell_open(str(meta))
