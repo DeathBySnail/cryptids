@@ -133,8 +133,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_accept"): # ui_accept is spacebar
 		process_confirm_input(current_direction)
 	if Input.is_action_just_pressed("ui_focus_next") && free_rotates > 0: 
-		free_rotates -= 1
-		rotate_slices()
+		attempt_rotate_slices()
 	
 	# if up, down, left or right is pressed, process that direction input
 	if Input.is_action_just_pressed("ui_up"): 
@@ -198,6 +197,13 @@ func process_confirm_input(direction:int)->void:
 			new_dir_chosen.emit(_current_value)
 			rotate_slices()
 
+func attempt_rotate_slices() -> bool:
+	if free_rotates > 0:
+		free_rotates -= 1
+		rotate_slices()
+		return true
+	return false
+	
 ## rotates the slice gimbal +90 degrees
 func rotate_slices()->void:
 	if _state != WheelState.AWAITING_SELECTION: return
