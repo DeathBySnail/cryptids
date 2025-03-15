@@ -125,6 +125,7 @@ func _ready()->void:
 	# wait for an actual ready call to begin the minigame
 	_state = WheelState.NO_INPUT
 
+
 # handles input for our minigame
 func _unhandled_input(_event: InputEvent) -> void:
 	if _state != WheelState.AWAITING_SELECTION: return
@@ -148,7 +149,33 @@ func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_right"):
 		current_direction=Directions.Right
 		process_direction_input(current_direction)
+		
+func _gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		mouse_selection(event.position)
+	elif event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			process_confirm_input(current_direction)
 #endregion
+
+func mouse_selection(mouse_pos: Vector2):
+	var mouse_pos_relative : Vector2 = (mouse_pos - (slice_gimbal.position + slice_gimbal.pivot_offset)).normalized()
+	
+	var doty = mouse_pos_relative.dot(Vector2.UP)
+	var dotx = mouse_pos_relative.dot(Vector2.RIGHT)
+	
+	if absf(doty) > absf(dotx):
+		if doty > 0.0:
+			current_direction = Directions.Up
+		else:
+			current_direction = Directions.Down
+	else:
+		if dotx < 0.0:
+			current_direction = Directions.Left
+		else:
+			current_direction = Directions.Right
+
+	process_direction_input(current_direction)
 
 #region Custom Functions
 ## processes the input direction and moves the selector to that direction.
