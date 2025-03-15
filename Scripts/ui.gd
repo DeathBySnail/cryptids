@@ -29,7 +29,7 @@ var attempt_count: int = 3;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	wheel.new_dir_selected.connect(update_wheel_selection);
+	wheel.new_dir_selected.connect(update_wheel_selection_w_audio);
 	wheel.new_dir_chosen.connect(update_wheel_value);
 	wheel.puzzle_finished.connect(selections_finished);
 	wheel.rotation_started.connect(wheel_rotated);
@@ -61,7 +61,10 @@ func configure_wheel_option(direction: Wheel.Directions, icon: TextureRect, inde
 		var statValue = CryptidManager.CurrentCryptid.get_stat(stat);
 		wheel_values[index] = statValue;
 	
-	
+func update_wheel_selection_w_audio() -> void:
+	update_wheel_selection()
+	AudioManager.play_tick()
+		
 func update_wheel_selection() -> void:
 	var selection: WheelOptionData = WheelOptions.Options.get(wheel.current_direction)
 	selected_option_text.text = selection.Name
@@ -80,6 +83,7 @@ func update_wheel_value(current_value: Wheel.WheelPayload) -> void:
 	elif score > ScoreForBadRound:
 		RoundScoreText = "[shake rate=10][color=#c0cbdc]MEH"
 	RoundReaction.show_text(RoundScoreText)
+	AudioManager.play_click()
 	
 func selections_finished() -> void:
 	attempt_count = attempt_count - 1;

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://babhd4f30jvch"]
+[gd_scene load_steps=14 format=3 uid="uid://babhd4f30jvch"]
 
 [ext_resource type="Script" uid="uid://gubghyx8ijpv" path="res://Scripts/scene_manager.gd" id="1_iacmt"]
 [ext_resource type="Script" uid="uid://dx4irruamu7hh" path="res://Scripts/Resources/WheelOptionDictionary.gd" id="2_m1efj"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cx20ubcsmiser" path="res://Scenes/cryptid_selection.tscn" id="10_mai8y"]
 [ext_resource type="PackedScene" uid="uid://c4ets7v14iuwq" path="res://Scenes/cryptid_details.tscn" id="11_76v2p"]
 [ext_resource type="PackedScene" uid="uid://da8mgcrxnn24g" path="res://Scenes/dialogue_box.tscn" id="12_drdnd"]
+[ext_resource type="AudioStream" uid="uid://jq8x3qbi7ol8" path="res://Assets/Audio/ambient.ogg" id="13_ioaeq"]
 
 [node name="MainScene" type="Control"]
 layout_mode = 3
@@ -61,7 +62,12 @@ visible = false
 [node name="CryptidDetails" parent="." instance=ExtResource("11_76v2p")]
 visible = false
 
-[node name="CanvasLayer" parent="." instance=ExtResource("12_drdnd")]
+[node name="Dialogue" parent="." instance=ExtResource("12_drdnd")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_ioaeq")
+autoplay = true
+playback_type = 1
 
 [connection signal="attempt_made" from="UI" to="." method="_on_ui_attempt_made"]
 [connection signal="attempts_over" from="UI" to="." method="_on_ui_attempts_over"]

@@ -31,3 +31,12 @@ func init(focus: bool) -> void:
 
 func _on_button_pressed() -> void:
 	cryptid_selected.emit(Cryptid)
+	AudioManager.play_click()
+
+
+func _on_button_mouse_entered() -> void:
+	AudioManager.play_tick()
+
+
+func _on_button_focus_entered() -> void:
+	AudioManager.play_tick()

@@ -52,6 +52,7 @@ func activate_scene(scene: Scene) -> void:
 		old_tween.finished.connect(func(): 
 			SceneMap[OldScene].set_process(false);
 			SceneMap[OldScene].set_visible(false););
+		AudioManager.play_swish()
 	
 	if SceneWheelOptions.has(CurrentScene):
 		var attempts = 3;

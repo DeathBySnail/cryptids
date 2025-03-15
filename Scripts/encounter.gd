@@ -49,8 +49,10 @@ func score_update(score: int, finished: bool) -> void:
 			CryptidSprite.set_instance_shader_parameter("tint_power", 0.0)
 
 			tween.set_trans(RevealTransitionType);
+			tween.set_parallel(true)
+			tween.tween_property(CryptidSprite, "position",Vector2.UP * 64,ScaleTweenSpeed).as_relative();
 			tween.tween_property(CryptidSprite, "scale",InitialScale * RevealScaleMultiplier,ScaleTweenSpeed);
-			tween.tween_interval(2.0);
+			tween.chain().tween_interval(2.0);
 			CryptidManager.befriend(CryptidManager.CurrentCryptid)
 		else:
 			display_message = CryptidManager.CurrentCryptid.encounter_fail_message()

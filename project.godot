@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 CryptidManager="*res://Scripts/CryptidManager.gd"
 DialogueManager="*res://Scripts/dialogue_manager.gd"
+AudioManager="*res://Scripts/audio_manager.gd"
 
 [dialogue_manager]
 

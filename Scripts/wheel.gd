@@ -163,18 +163,21 @@ func mouse_selection(mouse_pos: Vector2):
 	var doty = mouse_pos_relative.dot(Vector2.UP)
 	var dotx = mouse_pos_relative.dot(Vector2.RIGHT)
 	
+	var new_direction : int = selector.rotation_degrees
 	if absf(doty) > absf(dotx):
 		if doty > 0.0:
-			current_direction = Directions.Up
+			new_direction = Directions.Up
 		else:
-			current_direction = Directions.Down
+			new_direction = Directions.Down
 	else:
 		if dotx < 0.0:
-			current_direction = Directions.Left
+			new_direction = Directions.Left
 		else:
-			current_direction = Directions.Right
+			new_direction = Directions.Right
 
-	process_direction_input(current_direction)
+	if new_direction != selector.rotation_degrees:
+		current_direction = new_direction
+		process_direction_input(new_direction)
 
 #region Custom Functions
 ## processes the input direction and moves the selector to that direction.
