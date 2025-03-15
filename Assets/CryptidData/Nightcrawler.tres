@@ -7,6 +7,8 @@
 script = ExtResource("2_cuaj6")
 Name = "Night crawler"
 Description = "Legs Legs Legs"
+History = "First sighted 2007, California, and then later in Poland; the Fresno Nightcrawler is a short creature that is almost all leg that likes to take long walks in the early hours of the morning. But with no arms, they have to leave the hugging to us."
+WebLink = "[url=https://cryptidz.fandom.com/wiki/Fresno_Nightcrawler]Cryptid Wiki"
 Tex = ExtResource("1_rvn5w")
 Bogus = false
 BefriendScore = 15

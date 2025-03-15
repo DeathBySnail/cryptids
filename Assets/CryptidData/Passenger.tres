@@ -7,6 +7,8 @@
 script = ExtResource("2_73lws")
 Name = "Passenger"
 Description = "What is dove?"
+History = "([color=#e43b44][wave]Extinct :([/wave][/color]) Once commonly encountered in enourmous flocks, the last known Passenger Pigeon died in 1914 and there have been no sightings since. The bird remains a symbol of how fragile our ecosystem can be. But perhaps there's an ancester hiding in the remote corners of the earth..."
+WebLink = "[url=https://en.wikipedia.org/wiki/Passenger_pigeon]Wikipedia"
 Tex = ExtResource("1_iqv2x")
 Bogus = false
 BefriendScore = 15

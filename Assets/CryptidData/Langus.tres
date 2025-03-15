@@ -7,6 +7,8 @@
 script = ExtResource("1_351e2")
 Name = "Langus"
 Description = "It's Langus!"
+History = "([color=#e43b44]fake[/color]) A long-limbed bat originating from Glasgow, Scotland; the Langus is mostly encountered hanging off of tall trees in the remote wilderness. It is said that a bite from a Langus can give [shake]immortality."
+WebLink = "[url=https://deathbysnail.itch.io/]Itch.io Homepage"
 Tex = ExtResource("1_d46ak")
 Bogus = false
 BefriendScore = 15

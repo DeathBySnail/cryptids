@@ -7,6 +7,8 @@
 script = ExtResource("2_qbe6u")
 Name = "Mothman"
 Description = "Don't let him bug you"
+History = "First spotted in November 1966, Point Pleasant. Suspected to be an owl or another large bird, there have been many sightings over the years. Some say he visits natural or manmade disasters. Does he want to help us? What is his real motive?"
+WebLink = "[url=https://en.wikipedia.org/wiki/Mothman]Wikipedia"
 Tex = ExtResource("1_2uppk")
 Bogus = false
 BefriendScore = 15

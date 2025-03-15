@@ -1,12 +1,14 @@
 class_name SceneManager extends Control
 
-enum Scene {None, Selection, Investigate, Encounter}
+enum Scene {None, Selection, Investigate, Encounter, Details}
 
 @export var SceneWheelOptions: Dictionary[Scene, WheelOptionDictionary]
 @export var SceneTweenType: Tween.TransitionType = Tween.TransitionType.TRANS_EXPO;
 @export var SceneTweenSpeed: float = 1.2
 @onready var InvestigateScene : GameScene = $Investigate
 @onready var EncounterScene : GameScene = $Encounter
+@onready var CryptidDetailsPanel : GameScene = $CryptidDetails
+
 @onready var WheelPanel : WheelUI = $UI
 @onready var CryptidPanel : CryptidSelection = $CryptidSelection
 @onready var Camera: Camera2D = $Camera2D;
@@ -22,6 +24,9 @@ func _ready() -> void:
 	SceneTweenPositions[Scene.Encounter] = Vector2.RIGHT * 2000.0;
 	SceneMap[Scene.Selection] = $CryptidSelection
 	SceneTweenPositions[Scene.Selection] = Vector2.DOWN * 2000.0;
+	SceneMap[Scene.Details] = CryptidDetailsPanel
+	SceneTweenPositions[Scene.Details] = Vector2.UP * 2000.0;
+	
 	WheelPanel.set_visible(false)
 	WheelPanel.set_process(false)
 	

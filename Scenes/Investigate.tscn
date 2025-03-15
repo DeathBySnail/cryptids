@@ -178,3 +178,10 @@ editable = false
 scrollable = false
 tick_count = 20
 ticks_on_borders = true
+
+[node name="BackButton" type="Button" parent="."]
+offset_left = 39.0
+offset_top = 734.0
+offset_right = 143.0
+offset_bottom = 790.0
+text = "Back"

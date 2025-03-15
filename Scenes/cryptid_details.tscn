@@ -1,0 +1,69 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4ets7v14iuwq"]
+
+[ext_resource type="Script" uid="uid://bjn1di6a5g1ct" path="res://Scripts/cryptid_details.gd" id="1_1y3xy"]
+[ext_resource type="PackedScene" uid="uid://gdy0gknyfm1y" path="res://Scenes/ScreenPanel.tscn" id="1_5myx2"]
+[ext_resource type="Texture2D" uid="uid://ddclxmahwdvkv" path="res://Assets/textures/Cryptids/langus.png" id="2_1y3xy"]
+
+[node name="CryptidDetails" type="CanvasLayer"]
+script = ExtResource("1_1y3xy")
+
+[node name="ScreenPanel" parent="." instance=ExtResource("1_5myx2")]
+offset_right = 1280.0
+offset_bottom = 800.0
+
+[node name="Cryptid" type="TextureRect" parent="ScreenPanel"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 171.0
+offset_right = 61.0
+offset_bottom = 211.0
+scale = Vector2(10, 10)
+texture = ExtResource("2_1y3xy")
+
+[node name="Header" type="Label" parent="ScreenPanel"]
+layout_mode = 0
+offset_left = 334.0
+offset_top = 21.0
+offset_right = 930.0
+offset_bottom = 69.0
+text = "Flatwoods Monster"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Subheader" type="Label" parent="ScreenPanel"]
+layout_mode = 0
+offset_left = 334.0
+offset_top = 80.0
+offset_right = 930.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 35
+text = "just a neat little guy"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Content" type="RichTextLabel" parent="ScreenPanel"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 152.0
+offset_right = 1240.0
+offset_bottom = 583.0
+bbcode_enabled = true
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque scelerisque tellus porttitor, dapibus nibh eget, imperdiet nunc. Aenean viverra nunc in fringilla vulputate. Cras bibendum purus malesuada semper luctus. Nullam nec nunc ac nisl aliquam pretium at id ex. Nulla convallis aliquam tincidunt. Aliquam quis auctor lectus. Nullam pulvinar, magna a consequat pellentesque, risus turpis commodo justo, scelerisque fringilla metus nisl eget mi. In gravida malesuada purus, a dapibus sem varius vitae. Integer bibendum lectus eu nisi rhoncus, ac maximus enim blandit. Cras hendrerit consequat leo, consequat vestibulum odio tincidunt nec. Vivamus efficitur magna ligula, ut tincidunt elit posuere eget. Vivamus dignissim efficitur quam, eget congue felis molestie eget. Nullam rutrum augue quis eros euismod, sed tristique tortor ultricies. Etiam neque massa, eleifend sed tellus eu, tempor porta magna."
+
+[node name="WebLink" type="RichTextLabel" parent="ScreenPanel"]
+layout_mode = 0
+offset_left = 455.0
+offset_top = 628.0
+offset_right = 1144.0
+offset_bottom = 682.0
+theme_override_colors/default_color = Color(0.172549, 0.909804, 0.960784, 1)
+bbcode_enabled = true
+text = "[url=https://en.wikipedia.org/wiki/Loveland_frog]Wikipedia"
+
+[node name="Back" type="Button" parent="ScreenPanel"]
+layout_mode = 0
+offset_left = 167.0
+offset_top = 676.0
+offset_right = 296.0
+offset_bottom = 724.0
+text = "Back"

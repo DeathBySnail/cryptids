@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://babhd4f30jvch"]
+[gd_scene load_steps=12 format=3 uid="uid://babhd4f30jvch"]
 
 [ext_resource type="Script" uid="uid://gubghyx8ijpv" path="res://Scripts/scene_manager.gd" id="1_iacmt"]
 [ext_resource type="Script" uid="uid://dx4irruamu7hh" path="res://Scripts/Resources/WheelOptionDictionary.gd" id="2_m1efj"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://chok6a1xbmvrw" path="res://Scenes/ui.tscn" id="5_6ev3c"]
 [ext_resource type="PackedScene" uid="uid://qi782e1e308u" path="res://Scenes/post_process.tscn" id="5_xwko3"]
 [ext_resource type="PackedScene" uid="uid://cx20ubcsmiser" path="res://Scenes/cryptid_selection.tscn" id="10_mai8y"]
+[ext_resource type="PackedScene" uid="uid://c4ets7v14iuwq" path="res://Scenes/cryptid_details.tscn" id="11_76v2p"]
 
 [node name="MainScene" type="Control"]
 layout_mode = 3
@@ -57,6 +58,8 @@ transform = Transform2D(1, 0, 0, 1, 878.3, 8.1)
 
 [node name="CryptidSelection" parent="." instance=ExtResource("10_mai8y")]
 visible = false
+
+[node name="CryptidDetails" parent="." instance=ExtResource("11_76v2p")]
 
 [connection signal="attempt_made" from="UI" to="." method="_on_ui_attempt_made"]
 [connection signal="attempts_over" from="UI" to="." method="_on_ui_attempts_over"]

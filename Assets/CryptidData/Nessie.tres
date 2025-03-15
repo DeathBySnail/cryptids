@@ -7,6 +7,8 @@
 script = ExtResource("2_556xa")
 Name = "Nessie"
 Description = "loch who's here!"
+History = "One of the most popular cryptids, Nessie was first documented in a 7th century account; there have been over a thousand sightings of the creature. Whether ancient dinosaur or an elusive fish, all that's really known is that she likes her privacy."
+WebLink = "[url=https://www.lochnesssightings.com/]Loch Ness Sightings"
 Tex = ExtResource("1_m6y52")
 Bogus = false
 BefriendScore = 15

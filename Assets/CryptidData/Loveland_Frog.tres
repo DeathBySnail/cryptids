@@ -5,8 +5,10 @@
 
 [resource]
 script = ExtResource("2_g1x33")
-Name = "Loveland Frog"
+Name = "Loveland Frogman"
 Description = "Half man, half frog, all love"
+History = "First sighted in 1955 in Loveland, Ohio and now the official city mascot. Some have suspected it to be a large, tailless iguana. But what is the truth? Is there a race of frog people creeping in the sewers of Loveland?"
+WebLink = "[url=https://en.wikipedia.org/wiki/Loveland_frog]Wikipedia"
 Tex = ExtResource("1_uvg44")
 Bogus = false
 BefriendScore = 15

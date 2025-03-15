@@ -17,4 +17,7 @@ func init(cryptid: CryptidData):
 
 func _on_selection(cryptid: CryptidData) -> void:
 	CryptidManager.set_current_cryptid(cryptid);
-	go_to_scene.emit(SceneManager.Scene.Investigate)
+	if CryptidManager.get_progression(cryptid).befriended_count > 0:
+		go_to_scene.emit(SceneManager.Scene.Details)
+	else:
+		go_to_scene.emit(SceneManager.Scene.Investigate)

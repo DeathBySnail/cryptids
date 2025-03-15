@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://gdy0gknyfm1y"]
+
+[ext_resource type="Texture2D" uid="uid://757ifqt67wy1" path="res://Assets/textures/monitor.png" id="1_gixcu"]
+
+[node name="NinePatchRect" type="NinePatchRect"]
+offset_right = 229.0
+offset_bottom = 118.0
+texture = ExtResource("1_gixcu")
+region_rect = Rect2(2, 3, 61, 60)
+patch_margin_left = 14
+patch_margin_top = 17
+patch_margin_right = 14
+patch_margin_bottom = 14

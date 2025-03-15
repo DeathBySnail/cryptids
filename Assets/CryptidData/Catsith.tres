@@ -7,6 +7,8 @@
 script = ExtResource("2_ils3o")
 Name = "Cat-sìth"
 Description = "The magical girl of cat world"
+History = "([color=#63c74d][shake]Folklore?[/shake][/color]) A fey creature from the scottish wildlands masquerading as a large black cat. Potentially the story is inspired by the Kellas cats roaming the wild places of Scotland."
+WebLink = "[url=https://en.wikipedia.org/wiki/Cat-s%C3%ACth]Wikipedia"
 Tex = ExtResource("1_15rka")
 Bogus = false
 BefriendScore = 15
