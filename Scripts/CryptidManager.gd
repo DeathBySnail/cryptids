@@ -8,7 +8,7 @@ const MAX_INVESTIGATE_SCORE : int = 25
 
 class CryptidProgress:
 	var investigation_score: int = 0
-	var hints_unlocked: Array[String]
+	var befriended_count: int = 0
 
 var Progression: Dictionary[String, CryptidProgress]
 
@@ -26,12 +26,32 @@ func get_current_progression() -> CryptidProgress:
 func add_investigation_score(score: int):
 	get_current_progression().investigation_score = min(get_current_progression().investigation_score + score, MAX_INVESTIGATE_SCORE)
 
+func befriend(cryptid: CryptidData):
+	get_progression(cryptid).befriended_count += 1;
+
 func get_investigation_score() -> int:
 	return get_current_progression().investigation_score
 	
 func get_allowed_encounter_attempts() -> int:
 	var investigate_score: int = get_current_progression().investigation_score;
 	return maxi(1, investigate_score / 7)
+	
+func get_allowed_rotates() -> int:
+	var investigate_score: int = get_current_progression().investigation_score;
+	return maxi(0, (investigate_score + 3) / 10)
+	
+# bad scores cna be minimized based on investigation score
+func get_penalty_multiplier() -> float:
+	var investigate_score: int = get_current_progression().investigation_score;
+	if investigate_score >= MAX_INVESTIGATE_SCORE / 2:
+		return 0.5
+	return 1.0
+	
+## based on investigation progress, boost or penalize
+func mutate_score(score: int) -> int:
+	if score < 0:
+		score = int(score * get_penalty_multiplier())
+	return score
 	
 func get_hints(cryptid: CryptidData) -> Array[String]:
 	var hints: Array[String];

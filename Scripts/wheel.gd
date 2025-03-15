@@ -102,6 +102,7 @@ var _current_value:WheelPayload ## a WheelPayload object containing the wheel's 
 var current_direction:int = 0 ## where the selector currently is.
 const DIRECTIONS:Array[int] = [Directions.Up,Directions.Right,Directions.Down,Directions.Left] ## rotation value (in degrees) for the wheel directions. [UP,RIGHT,DOWN,LEFT]
 var target_selections:int = 4 ## how many selections are allowed; default is 4.
+var free_rotates: int = 0 ## how many times we can freely spin the wheel per game
 #endregion
 
 func angle_to_direction(angle: int) -> int:
@@ -130,7 +131,8 @@ func _unhandled_input(_event: InputEvent) -> void:
 
 	if Input.is_action_just_pressed("ui_accept"): # ui_accept is spacebar
 		process_confirm_input(current_direction)
-	if Input.is_action_just_pressed("ui_text_completion_replace"):  # ui_text_completion_replace is tab
+	if Input.is_action_just_pressed("ui_focus_next") && free_rotates > 0: 
+		free_rotates -= 1
 		rotate_slices()
 	
 	# if up, down, left or right is pressed, process that direction input

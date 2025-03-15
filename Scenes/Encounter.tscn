@@ -19,7 +19,6 @@ fill_from = Vector2(0.5, 0.5)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tojed"]
 shader = ExtResource("2_r11jg")
 shader_parameter/tint = Color(0, 0, 0, 1)
-shader_parameter/tint_power = 1.0
 
 [node name="Encounter" type="CanvasLayer"]
 layer = 0

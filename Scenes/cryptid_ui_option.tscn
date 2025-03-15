@@ -1,14 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://b28no6i34m8yr"]
+[gd_scene load_steps=7 format=3 uid="uid://b28no6i34m8yr"]
 
 [ext_resource type="Shader" uid="uid://cvbeqjn8xeyja" path="res://Assets/textures/Cryptids/cryptid.gdshader" id="1_5oy8w"]
 [ext_resource type="Script" uid="uid://v45x2fcl2jqc" path="res://Scripts/cryptid_ui_option.gd" id="1_wt5qf"]
 [ext_resource type="Resource" uid="uid://cnh8iewktxhk1" path="res://Assets/CryptidData/Langus.tres" id="2_povw2"]
 [ext_resource type="Texture2D" uid="uid://ddclxmahwdvkv" path="res://Assets/textures/Cryptids/langus.png" id="2_wt5qf"]
+[ext_resource type="Texture2D" uid="uid://cdragw4j5ftu5" path="res://Assets/textures/Reactions/study.png" id="5_81c2l"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lpevr"]
 shader = ExtResource("1_5oy8w")
 shader_parameter/tint = Color(0, 0, 0, 1)
-shader_parameter/tint_power = 1.0
 
 [node name="CryptidUIOption" type="MarginContainer"]
 offset_right = 148.0
@@ -51,5 +51,13 @@ max_value = 20.0
 rounded = true
 editable = false
 scrollable = false
+
+[node name="BefriendedIcon" type="TextureRect" parent="Button"]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 110.0
+offset_right = 102.0
+offset_bottom = 150.0
+texture = ExtResource("5_81c2l")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

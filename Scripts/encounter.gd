@@ -11,11 +11,11 @@ var InitialScale : Vector2 = Vector2.ONE;
 var TargetScore : int = 0;
 func _ready() -> void:
 	InitialScale = CryptidSprite.scale;
-	CryptidSprite.material.set_shader_parameter("tint_power", 1.0)
+	CryptidSprite.set_instance_shader_parameter("tint_power", 1.0)
 	
 func init(cryptid: CryptidData):
 	CryptidSprite.texture = cryptid.Tex
-	CryptidSprite.material.set_shader_parameter("tint_power", 1.0)
+	CryptidSprite.set_instance_shader_parameter("tint_power", 1.0)
 	CryptidSprite.scale = InitialScale;
 	TargetScore = cryptid.BefriendScore;
 	
@@ -34,7 +34,7 @@ func init(cryptid: CryptidData):
 func score_update(score: int, finished: bool) -> void:
 	if finished:
 		if score >= TargetScore:
-			CryptidSprite.material.set_shader_parameter("tint_power", 0.0)
+			CryptidSprite.set_instance_shader_parameter("tint_power", 0.0)
 			var tween:Tween = create_tween();
 			tween.set_trans(RevealTransitionType);
 			tween.tween_property(CryptidSprite, "scale",InitialScale * RevealScaleMultiplier,ScaleTweenSpeed);
@@ -46,3 +46,4 @@ func score_update(score: int, finished: bool) -> void:
 			tween.tween_property(CryptidSprite, "scale",Vector2.ZERO,ScaleTweenSpeed);
 			tween.tween_interval(2.0);
 			tween.finished.connect(func(): go_to_scene.emit(SceneManager.Scene.Investigate))
+			CryptidManager.befriend(CryptidManager.CurrentCryptid)

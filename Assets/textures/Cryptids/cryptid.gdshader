@@ -1,7 +1,7 @@
 shader_type canvas_item;
 
 uniform vec4 tint:source_color=vec4(1,1,1,1);
-uniform float tint_power: hint_range(0,1) = 1;
+instance uniform float tint_power: hint_range(0,1) = 1;
 
 void vertex() {
 	// Called for every vertex the material is visible on.

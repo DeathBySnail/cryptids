@@ -6,6 +6,7 @@ signal attempts_over(score: int);
 @onready var wheel:Wheel = %Wheel
 @onready var selected_option_text: RichTextLabel = %SelectedOptionText
 @onready var attempt_count_label: RichTextLabel = %AttemptCountLabel
+@onready var free_roate_count_label: RichTextLabel = %FreeRotateCount
 @onready var RoundReaction: PopupText = %RoundReaction
 
 @export var WheelOptions: WheelOptionDictionary
@@ -31,8 +32,9 @@ func _ready() -> void:
 	wheel.new_dir_selected.connect(update_wheel_selection);
 	wheel.new_dir_chosen.connect(update_wheel_value);
 	wheel.puzzle_finished.connect(selections_finished);
+	wheel.rotation_started.connect(wheel_rotated);
 
-func configure_wheel_from_options(options:WheelOptionDictionary, attempts: int) -> void:
+func configure_wheel_from_options(options:WheelOptionDictionary, attempts: int, rotates: int) -> void:
 	WheelOptions = options;
 	configure_wheel_option(Wheel.Directions.Up, UpImage, 0)
 	configure_wheel_option(Wheel.Directions.Right, RightImage, 1)
@@ -42,9 +44,11 @@ func configure_wheel_from_options(options:WheelOptionDictionary, attempts: int) 
 	wheel.set_base_numbers(wheel_values);
 	attempt_count = attempts;
 	attempt_count_label.text = str(attempt_count)
+	free_roate_count_label.text = str(rotates)
 	CurrentScore = 0;
 	RoundScore = 0;
 	wheel.reset(true);
+	wheel.free_rotates = rotates
 	set_visible(true)
 	set_process(true)
 	update_wheel_selection()
@@ -65,14 +69,15 @@ func update_wheel_selection() -> void:
 	BaseMultiplierValueText.text = str(wheel.get_current_wheel_value().slice_value)
 	
 func update_wheel_value(current_value: Wheel.WheelPayload) -> void:
-	RoundScore += current_value.total_value
-	print("score %d round %d segment sum %d base %d slice %d" % [CurrentScore,RoundScore, current_value.total_value, current_value.base_value, current_value.slice_value])
+	var score = CryptidManager.mutate_score(current_value.total_value)
+	RoundScore += score
+	print("score %d round %d mutated %s segment sum %d base %d slice %d" % [CurrentScore,RoundScore, score, current_value.total_value, current_value.base_value, current_value.slice_value])
 	TotalValueText.text = str(CurrentScore);
 	
 	var RoundScoreText: String = "[shake][color=#e43b44]POOR"
-	if current_value.total_value >= ScoreForGoodRound:
+	if score >= ScoreForGoodRound:
 		RoundScoreText = "[wave][color=#63c74d]NICE!"
-	elif current_value.total_value > ScoreForBadRound:
+	elif score > ScoreForBadRound:
 		RoundScoreText = "[shake rate=10][color=#c0cbdc]MEH"
 	RoundReaction.show_text(RoundScoreText)
 	
@@ -89,3 +94,6 @@ func selections_finished() -> void:
 	else:
 		print("attempts over with score %d" % [CurrentScore])
 		attempts_over.emit(CurrentScore)
+
+func wheel_rotated() -> void:
+	free_roate_count_label.text = str(wheel.free_rotates)

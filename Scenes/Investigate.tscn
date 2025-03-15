@@ -26,7 +26,6 @@ fill_from = Vector2(1, 1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_x7yox"]
 shader = ExtResource("4_slw4m")
 shader_parameter/tint = Color(0, 0.522189, 2.88785e-07, 1)
-shader_parameter/tint_power = 1.0
 
 [sub_resource type="Gradient" id="Gradient_vpg48"]
 colors = PackedColorArray(1, 1, 1, 0.137255, 0.39, 0.39, 0.39, 0)

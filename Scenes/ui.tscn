@@ -181,6 +181,30 @@ text = "0"
 fit_content = true
 vertical_alignment = 1
 
+[node name="HBoxContainer2" type="HBoxContainer" parent="Wheel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 487.0
+offset_right = 313.0
+offset_bottom = 583.0
+
+[node name="AttemptLabel" type="RichTextLabel" parent="Wheel/HBoxContainer2"]
+custom_minimum_size = Vector2(197.2, 0)
+layout_mode = 2
+text = "Free Rotates "
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="FreeRotateCount" type="RichTextLabel" parent="Wheel/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(61, 0)
+layout_mode = 2
+text = "0"
+fit_content = true
+vertical_alignment = 1
+
 [node name="Control" type="Control" parent="Wheel"]
 anchors_preset = 0
 offset_right = 40.0

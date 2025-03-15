@@ -50,9 +50,10 @@ func activate_scene(scene: Scene) -> void:
 	
 	if SceneWheelOptions.has(CurrentScene):
 		var attempts = 3;
+		var rotates = CryptidManager.get_allowed_rotates()
 		if CurrentScene == Scene.Encounter:
 			attempts = CryptidManager.get_allowed_encounter_attempts()
-		WheelPanel.configure_wheel_from_options(SceneWheelOptions[CurrentScene], attempts)
+		WheelPanel.configure_wheel_from_options(SceneWheelOptions[CurrentScene], attempts, rotates)
 	else:
 		WheelPanel.set_visible(false)
 		WheelPanel.set_process(false)
