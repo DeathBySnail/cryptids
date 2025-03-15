@@ -6,15 +6,15 @@
 [resource]
 script = ExtResource("2_ils3o")
 Name = "Cat-sìth"
-Description = "Good or bad omen? Fluffy regardless"
+Description = "The magical girl of cat world"
 Tex = ExtResource("1_15rka")
 Bogus = false
 BefriendScore = 15
-Coo = 1
+Coo = -1
 Joke = -2
 Bribe = 2
-Ignore = -1
-EncounterHints = Array[String]([])
+Ignore = 1
+EncounterHints = Array[String](["[wave]greedy", "[wave]loner", "[wave]aloof"])
 Track = -1
 Gossip = -2
 Study = 1
