@@ -7,6 +7,8 @@
 script = ExtResource("2_ierqq")
 Name = "Gus"
 Description = "Dammit Gus, not again"
+History = ""
+WebLink = ""
 Tex = ExtResource("1_36lay")
 Bogus = true
 BefriendScore = 0

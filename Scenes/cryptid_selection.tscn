@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cx20ubcsmiser"]
+[gd_scene load_steps=12 format=3 uid="uid://cx20ubcsmiser"]
 
 [ext_resource type="Texture2D" uid="uid://757ifqt67wy1" path="res://Assets/textures/monitor.png" id="1_8tbo1"]
 [ext_resource type="PackedScene" uid="uid://b28no6i34m8yr" path="res://Scenes/cryptid_ui_option.tscn" id="1_l3g55"]
 [ext_resource type="Script" uid="uid://d2q5vnu4q83md" path="res://Scripts/cryptid_selection.gd" id="1_lpevr"]
 [ext_resource type="Resource" uid="uid://dh008ylr5436y" path="res://Assets/CryptidData/Loveland_Frog.tres" id="2_2sjhg"]
+[ext_resource type="Texture2D" uid="uid://cv8hxxmom8sl3" path="res://Assets/textures/wheel_os_title.png" id="3_44vla"]
 [ext_resource type="Resource" uid="uid://c8m4qv1w48bvc" path="res://Assets/CryptidData/Nightcrawler.tres" id="5_prcyu"]
 [ext_resource type="Resource" uid="uid://bpsg230788gpu" path="res://Assets/CryptidData/mothman.tres" id="6_be6bi"]
 [ext_resource type="Resource" uid="uid://dx56m7tvtqrbp" path="res://Assets/CryptidData/Catsith.tres" id="7_kdc1q"]
@@ -14,62 +15,85 @@
 [node name="CryptidSelection" type="CanvasLayer"]
 script = ExtResource("1_lpevr")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="NinePatchRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_8tbo1")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
 
-[node name="Options" type="GridContainer" parent="TextureRect"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 340.0
-offset_top = 247.0
-offset_right = 1040.0
-offset_bottom = 539.0
-columns = 4
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 0
 
-[node name="CryptidUIOption" parent="TextureRect/Options" instance=ExtResource("1_l3g55")]
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer"]
 layout_mode = 2
 
-[node name="CryptidUIOption2" parent="TextureRect/Options" instance=ExtResource("1_l3g55")]
+[node name="TextureRect" type="TextureRect" parent="TextureRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(506.5, 273.3)
 layout_mode = 2
-Cryptid = ExtResource("2_2sjhg")
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.24
+texture = ExtResource("3_44vla")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="CryptidUIOption3" parent="TextureRect/Options" instance=ExtResource("1_l3g55")]
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
-Cryptid = ExtResource("5_prcyu")
-
-[node name="CryptidUIOption4" parent="TextureRect/Options" instance=ExtResource("1_l3g55")]
-layout_mode = 2
-Cryptid = ExtResource("6_be6bi")
-
-[node name="CryptidUIOption5" parent="TextureRect/Options" instance=ExtResource("1_l3g55")]
-layout_mode = 2
-Cryptid = ExtResource("7_kdc1q")
-
-[node name="CryptidUIOption6" parent="TextureRect/Options" instance=ExtResource("1_l3g55")]
-layout_mode = 2
-Cryptid = ExtResource("8_iksbf")
-
-[node name="CryptidUIOption7" parent="TextureRect/Options" instance=ExtResource("1_l3g55")]
-layout_mode = 2
-Cryptid = ExtResource("9_amqfw")
-
-[node name="CryptidUIOption8" parent="TextureRect/Options" instance=ExtResource("1_l3g55")]
-layout_mode = 2
-Cryptid = ExtResource("10_24bmu")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect"]
-layout_mode = 0
-offset_left = 574.0
-offset_top = 548.0
-offset_right = 907.0
-offset_bottom = 646.5
+size_flags_vertical = 4
 bbcode_enabled = true
 text = "Choose a [wave amp=50.0 freq=5.0 connected=1][color=green]Cryptid"
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Options" type="GridContainer" parent="TextureRect/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+columns = 4
+
+[node name="CryptidUIOption" parent="TextureRect/MarginContainer/VBoxContainer/Options" instance=ExtResource("1_l3g55")]
+layout_mode = 2
+
+[node name="CryptidUIOption2" parent="TextureRect/MarginContainer/VBoxContainer/Options" instance=ExtResource("1_l3g55")]
+layout_mode = 2
+Cryptid = ExtResource("2_2sjhg")
+
+[node name="CryptidUIOption3" parent="TextureRect/MarginContainer/VBoxContainer/Options" instance=ExtResource("1_l3g55")]
+layout_mode = 2
+Cryptid = ExtResource("5_prcyu")
+
+[node name="CryptidUIOption4" parent="TextureRect/MarginContainer/VBoxContainer/Options" instance=ExtResource("1_l3g55")]
+layout_mode = 2
+Cryptid = ExtResource("6_be6bi")
+
+[node name="CryptidUIOption5" parent="TextureRect/MarginContainer/VBoxContainer/Options" instance=ExtResource("1_l3g55")]
+layout_mode = 2
+Cryptid = ExtResource("7_kdc1q")
+
+[node name="CryptidUIOption6" parent="TextureRect/MarginContainer/VBoxContainer/Options" instance=ExtResource("1_l3g55")]
+layout_mode = 2
+Cryptid = ExtResource("8_iksbf")
+
+[node name="CryptidUIOption7" parent="TextureRect/MarginContainer/VBoxContainer/Options" instance=ExtResource("1_l3g55")]
+layout_mode = 2
+Cryptid = ExtResource("9_amqfw")
+
+[node name="CryptidUIOption8" parent="TextureRect/MarginContainer/VBoxContainer/Options" instance=ExtResource("1_l3g55")]
+layout_mode = 2
+Cryptid = ExtResource("10_24bmu")

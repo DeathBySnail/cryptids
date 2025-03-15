@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://jtevk3c4b23m"]
+[gd_scene load_steps=13 format=3 uid="uid://jtevk3c4b23m"]
 
 [ext_resource type="Script" uid="uid://bi1ued6a2fr3v" path="res://Scripts/encounter.gd" id="1_0p71b"]
 [ext_resource type="Texture2D" uid="uid://gnlxqx81rcal" path="res://Assets/textures/bush_1.png" id="2_h0cth"]
@@ -19,6 +19,17 @@ fill_from = Vector2(0.5, 0.5)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tojed"]
 shader = ExtResource("2_r11jg")
 shader_parameter/tint = Color(0, 0, 0, 1)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_is14l"]
+
+[sub_resource type="Gradient" id="Gradient_4a6vu"]
+offsets = PackedFloat32Array(0.28866, 0.43299)
+colors = PackedColorArray(0.0448, 0.0506667, 0.08, 0.27451, 0.1539, 0.17325, 0.27, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ovxwo"]
+gradient = SubResource("Gradient_4a6vu")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="Encounter" type="CanvasLayer"]
 layer = 0
@@ -127,6 +138,8 @@ autowrap_mode = 0
 position = Vector2(548, 331)
 scale = Vector2(6.95313, 7.03461)
 range_layer_min = -512
+shadow_enabled = true
+shadow_color = Color(1, 0, 0.0166664, 1)
 texture = SubResource("GradientTexture2D_53pla")
 texture_scale = 2.0
 
@@ -137,6 +150,13 @@ material = SubResource("ShaderMaterial_tojed")
 position = Vector2(489.2, 320)
 scale = Vector2(10, 10)
 texture = ExtResource("3_3mtt6")
+
+[node name="Shadow" type="Sprite2D" parent="ParallaxBackground/CreatureLayer/CryptidSprite"]
+show_behind_parent = true
+material = SubResource("CanvasItemMaterial_is14l")
+position = Vector2(0, 14.2)
+scale = Vector2(1, 0.270313)
+texture = SubResource("GradientTexture2D_ovxwo")
 
 [node name="ForeLayer" type="Parallax2D" parent="ParallaxBackground"]
 scroll_scale = Vector2(1.675, 1.675)
