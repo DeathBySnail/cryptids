@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://babhd4f30jvch"]
+[gd_scene load_steps=15 format=3 uid="uid://babhd4f30jvch"]
 
 [ext_resource type="Script" uid="uid://gubghyx8ijpv" path="res://Scripts/scene_manager.gd" id="1_iacmt"]
 [ext_resource type="Script" uid="uid://dx4irruamu7hh" path="res://Scripts/Resources/WheelOptionDictionary.gd" id="2_m1efj"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://c4ets7v14iuwq" path="res://Scenes/cryptid_details.tscn" id="11_76v2p"]
 [ext_resource type="PackedScene" uid="uid://da8mgcrxnn24g" path="res://Scenes/dialogue_box.tscn" id="12_drdnd"]
 [ext_resource type="AudioStream" uid="uid://jq8x3qbi7ol8" path="res://Assets/Audio/ambient.ogg" id="13_ioaeq"]
+[ext_resource type="PackedScene" uid="uid://gdy0gknyfm1y" path="res://Scenes/ScreenPanel.tscn" id="14_7ewk0"]
 
 [node name="MainScene" type="Control"]
 layout_mode = 3
@@ -69,5 +70,54 @@ stream = ExtResource("13_ioaeq")
 autoplay = true
 playback_type = 1
 
+[node name="TutorialPanel" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="NinePatchRect" parent="TutorialPanel" instance=ExtResource("14_7ewk0")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 20.0
+offset_right = -429.0
+offset_bottom = -46.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TutorialPanel/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TutorialPanel/NinePatchRect/MarginContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TutorialPanel/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Choose a strategy  with the [wave][color=#63c74d]WHEEL[/color][/wave] -->
+Each cryptid has [color=#63c74d]GOOD[/color] and [color=#e43b44]BAD[/color] strategies.
+
+The [color=#63c74d]SIZE[/color] of the slice represents time spent on that strategy.
+
+The wheel [color=#63c74d]ROTATES[/color] with each action.
+Progress is gained with good choices, unlocking more [color=#63c74d]ATTEMPTS[/color],  [color=#63c74d]FREE ROTATES[/color] and [color=#63c74d]HINTS[/color] when encountering a cryptid.
+
+"
+fit_content = true
+
+[node name="TutorialButton" type="Button" parent="TutorialPanel/NinePatchRect/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "PRESS ME TO BEGIN"
+
 [connection signal="attempt_made" from="UI" to="." method="_on_ui_attempt_made"]
 [connection signal="attempts_over" from="UI" to="." method="_on_ui_attempts_over"]
+[connection signal="pressed" from="TutorialPanel/NinePatchRect/MarginContainer/VBoxContainer/TutorialButton" to="." method="_on_tutorial_button_pressed"]

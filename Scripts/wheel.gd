@@ -132,8 +132,6 @@ func _unhandled_input(_event: InputEvent) -> void:
 
 	if Input.is_action_just_pressed("ui_accept"): # ui_accept is spacebar
 		process_confirm_input(current_direction)
-	if Input.is_action_just_pressed("ui_focus_next") && free_rotates > 0: 
-		attempt_rotate_slices()
 	
 	# if up, down, left or right is pressed, process that direction input
 	if Input.is_action_just_pressed("ui_up"): 
@@ -150,11 +148,12 @@ func _unhandled_input(_event: InputEvent) -> void:
 		process_direction_input(current_direction)
 		
 func _gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
-		mouse_selection(event.position)
-	elif event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			process_confirm_input(current_direction)
+	if is_processing_unhandled_input():
+		if event is InputEventMouseMotion:
+			mouse_selection(event.position)
+		elif event is InputEventMouseButton:
+			if event.button_index == MOUSE_BUTTON_LEFT && event.is_released():
+				process_confirm_input(current_direction)
 #endregion
 
 func mouse_selection(mouse_pos: Vector2):
@@ -182,7 +181,7 @@ func mouse_selection(mouse_pos: Vector2):
 #region Custom Functions
 ## processes the input direction and moves the selector to that direction.
 func process_direction_input(direction:int)->void:
-	if _state != WheelState.AWAITING_SELECTION: return
+	# if _state != WheelState.AWAITING_SELECTION: return
 	selector.rotation_degrees = direction #move our selector to the direction
 	_current_value = get_current_wheel_value() #set the current wheel value to our slice and base values
 	new_dir_selected.emit() # emit signal that we have moved the selector

@@ -6,7 +6,7 @@ signal attempts_over(score: int);
 @onready var wheel:Wheel = %Wheel
 @onready var selected_option_text: RichTextLabel = %SelectedOptionText
 @onready var attempt_count_label: RichTextLabel = %AttemptCountLabel
-@onready var free_roate_count_label: RichTextLabel = %FreeRotateCount
+@onready var free_roate_count_label: Button = %FreeRotateButton
 @onready var RoundReaction: PopupText = %RoundReaction
 
 @export var WheelOptions: WheelOptionDictionary
@@ -33,6 +33,10 @@ func _ready() -> void:
 	wheel.new_dir_chosen.connect(update_wheel_value);
 	wheel.puzzle_finished.connect(selections_finished);
 	wheel.rotation_started.connect(wheel_rotated);
+	
+func toggle_input(enabled: bool) -> void:
+	wheel.set_process_unhandled_input(enabled);
+	wheel.set_process_input(enabled);
 
 func configure_wheel_from_options(options:WheelOptionDictionary, attempts: int, rotates: int) -> void:
 	WheelOptions = options;
@@ -44,7 +48,8 @@ func configure_wheel_from_options(options:WheelOptionDictionary, attempts: int, 
 	wheel.set_base_numbers(wheel_values);
 	attempt_count = attempts;
 	attempt_count_label.text = str(attempt_count)
-	free_roate_count_label.text = str(rotates)
+	# update rotate label
+	wheel_rotated()
 	CurrentScore = 0;
 	RoundScore = 0;
 	wheel.reset(true);
@@ -101,3 +106,8 @@ func selections_finished() -> void:
 
 func wheel_rotated() -> void:
 	free_roate_count_label.text = str(wheel.free_rotates)
+	free_roate_count_label.disabled = wheel.free_rotates == 0
+
+
+func _on_free_rotate_button_pressed() -> void:
+	wheel.attempt_rotate_slices()

@@ -8,6 +8,7 @@ enum Scene {None, Selection, Investigate, Encounter, Details}
 @onready var InvestigateScene : GameScene = $Investigate
 @onready var EncounterScene : GameScene = $Encounter
 @onready var CryptidDetailsPanel : GameScene = $CryptidDetails
+@onready var TutorialPanel: CanvasLayer = $TutorialPanel
 
 @onready var WheelPanel : WheelUI = $UI
 @onready var CryptidPanel : CryptidSelection = $CryptidSelection
@@ -16,6 +17,8 @@ enum Scene {None, Selection, Investigate, Encounter, Details}
 var SceneMap: Dictionary[Scene, GameScene]
 var SceneTweenPositions: Dictionary[Scene, Vector2]
 var CurrentScene: Scene = Scene.None
+
+var shown_tutorial : bool = false
 
 func _ready() -> void:
 	SceneMap[Scene.Investigate] = $Investigate
@@ -36,6 +39,7 @@ func _ready() -> void:
 		SceneMap[scene].go_to_scene.connect(activate_scene)
 		
 	CryptidPanel.set_visible(false);
+	TutorialPanel.set_visible(false);
 	activate_scene(Scene.Selection)
 
 func activate_scene(scene: Scene) -> void:
@@ -84,6 +88,9 @@ func activate_scene(scene: Scene) -> void:
 	
 	SceneMap[CurrentScene].set_process(true)
 	SceneMap[CurrentScene].set_visible(true)
+	
+	if !shown_tutorial && CurrentScene == Scene.Investigate:
+		show_tutorial();
 
 func _on_ui_attempts_over(score: int) -> void:
 	if CurrentScene != Scene.None:
@@ -94,3 +101,23 @@ func _on_ui_attempt_made(current_score: int) -> void:
 	# pass to the current scene that a score update has occurred
 	if CurrentScene != Scene.None:
 		SceneMap[CurrentScene].score_update(current_score, false)
+
+
+func show_tutorial() -> void:
+	shown_tutorial = true
+	if !OS.is_debug_build():
+		var tween:Tween = get_tree().create_tween().bind_node(TutorialPanel)
+		TutorialPanel.offset = Vector2.UP * 2000.0;
+		TutorialPanel.visible = true
+		tween.set_trans(SceneTweenType)
+		tween.tween_property(TutorialPanel, "offset", Vector2.ZERO, 1.0)
+		tween.finished.connect(func(): tween.kill())
+		WheelPanel.toggle_input(false)
+	
+func _on_tutorial_button_pressed() -> void:
+	var tween:Tween = get_tree().create_tween().bind_node(TutorialPanel)
+	tween.set_trans(SceneTweenType)
+	tween.tween_property(TutorialPanel, "offset", Vector2.UP * 2000.0, 1.0)
+	tween.finished.connect(func(): TutorialPanel.visible = false)
+	AudioManager.play_click()
+	WheelPanel.toggle_input(true)
