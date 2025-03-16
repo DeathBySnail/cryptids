@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cbi2w28xfnlj"]
+[gd_scene load_steps=17 format=3 uid="uid://cbi2w28xfnlj"]
 
 [ext_resource type="Texture2D" uid="uid://b0yqk4alm4o2u" path="res://Assets/textures/table.png" id="1_8kku0"]
 [ext_resource type="Script" uid="uid://bd3eodn84lyis" path="res://Scripts/investigate.gd" id="1_hnd6d"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dtxfq861525nf" path="res://Assets/textures/Cryptids/fresno.png" id="5_622s4"]
 [ext_resource type="Script" uid="uid://bt4o0x42it2br" path="res://Scripts/autoscroll_label.gd" id="5_bty6i"]
 [ext_resource type="Texture2D" uid="uid://cdeoyybpl0n32" path="res://Assets/textures/cup.png" id="7_vsnd2"]
+[ext_resource type="Script" uid="uid://bw6nwu2gsv3sv" path="res://Scripts/popup_text.gd" id="10_hnd6d"]
 
 [sub_resource type="Gradient" id="Gradient_6edcr"]
 interpolation_mode = 1
@@ -160,24 +161,46 @@ initial_velocity_min = 16.13
 initial_velocity_max = 25.81
 scale_amount_curve = SubResource("Curve_qgybe")
 
-[node name="Label" type="Label" parent="."]
-offset_left = 82.0
-offset_top = 659.0
-offset_right = 230.0
-offset_bottom = 707.0
+[node name="Knowledge" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 73.0
+offset_top = 635.0
+offset_right = 1142.0
+offset_bottom = 743.0
+
+[node name="Label" type="Label" parent="Knowledge"]
+offset_left = 9.0
+offset_top = 4.0
+offset_right = 229.0
+offset_bottom = 52.0
 text = "Knowledge"
 
-[node name="InvestigateScoreSlider" type="HSlider" parent="."]
-offset_left = 88.0
-offset_top = 714.0
-offset_right = 1114.0
-offset_bottom = 730.0
+[node name="InvestigateScoreSlider" type="ProgressBar" parent="Knowledge"]
+unique_name_in_owner = true
+offset_left = 15.0
+offset_top = 59.0
+offset_right = 1041.0
+offset_bottom = 90.0
 max_value = 20.0
 rounded = true
-editable = false
-scrollable = false
-tick_count = 20
-ticks_on_borders = true
+
+[node name="InvestigateScorePopup" type="RichTextLabel" parent="Knowledge"]
+unique_name_in_owner = true
+offset_left = 234.0
+offset_top = -14.0
+offset_right = 330.0
+offset_bottom = 34.0
+bbcode_enabled = true
+text = "[wave][color=#63c74d]+12"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("10_hnd6d")
+seconds_to_full_display = 0.3
+seconds_at_full_display = 0.8
+seconds_to_vanish = 1.0
+default_text = "[wave][color=#63c74d]NICE!"
+end_rel_position = Vector2(0, 200)
 
 [node name="BackButton" type="Button" parent="."]
 offset_left = 39.0

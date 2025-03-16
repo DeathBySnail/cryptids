@@ -48,8 +48,6 @@ func configure_wheel_from_options(options:WheelOptionDictionary, attempts: int, 
 	wheel.set_base_numbers(wheel_values);
 	attempt_count = attempts;
 	attempt_count_label.text = str(attempt_count)
-	# update rotate label
-	wheel_rotated()
 	CurrentScore = 0;
 	RoundScore = 0;
 	wheel.reset(true);
@@ -57,6 +55,8 @@ func configure_wheel_from_options(options:WheelOptionDictionary, attempts: int, 
 	set_visible(true)
 	set_process(true)
 	update_wheel_selection()
+	# update rotate label
+	wheel_rotated()
 
 func configure_wheel_option(direction: Wheel.Directions, icon: TextureRect, index: int) -> void:
 	var data: WheelOptionData = WheelOptions.Options.get(direction);

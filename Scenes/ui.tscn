@@ -173,30 +173,6 @@ seconds_to_full_display = 0.3
 seconds_to_vanish = 1.2
 default_text = "[wave][color=#63c74d]NICE!"
 
-[node name="RoundReaction2" type="RichTextLabel" parent="Wheel/Control"]
-visible = false
-layout_mode = 0
-offset_left = 150.0
-offset_top = 2.0
-offset_right = 246.0
-offset_bottom = 50.0
-bbcode_enabled = true
-text = "[shake rate=10][color=#c0cbdc]MEH"
-fit_content = true
-autowrap_mode = 0
-
-[node name="RoundReaction3" type="RichTextLabel" parent="Wheel/Control"]
-visible = false
-layout_mode = 0
-offset_left = 265.0
-offset_top = 2.0
-offset_right = 361.0
-offset_bottom = 50.0
-bbcode_enabled = true
-text = "[shake][color=#e43b44]POOR"
-fit_content = true
-autowrap_mode = 0
-
 [node name="FreeRotateButton" type="Button" parent="Wheel"]
 unique_name_in_owner = true
 layout_mode = 0

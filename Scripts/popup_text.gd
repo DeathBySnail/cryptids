@@ -1,8 +1,10 @@
 class_name PopupText extends RichTextLabel
 
 @export var seconds_to_full_display: float = 0.5
+@export var seconds_at_full_display: float = 0.0
 @export var seconds_to_vanish: float = 0.5
 @export var default_text: String = "Nice!"
+@export var end_rel_position: Vector2 = Vector2.UP * 200
 
 var start_position: Vector2 = Vector2.ZERO
 var current_tween: Tween = null
@@ -27,4 +29,6 @@ func show_text(display_text: String):
 	current_tween = create_tween()
 	current_tween.set_trans(Tween.TRANS_LINEAR)
 	current_tween.tween_property(self, "visible_ratio", 1.0,seconds_to_full_display)
-	current_tween.tween_property(self, "position", start_position + Vector2.UP * 200,seconds_to_vanish).set_trans(Tween.TRANS_ELASTIC)
+	if seconds_at_full_display > 0.0:
+		current_tween.tween_interval(seconds_at_full_display)
+	current_tween.tween_property(self, "position", start_position + end_rel_position,seconds_to_vanish).set_trans(Tween.TRANS_ELASTIC)

@@ -3,8 +3,8 @@ class_name CryptidUIOption extends Node
 @export var Cryptid: CryptidData
 @onready var Tex : TextureRect = $TextureRect
 @onready var Butt: Button = $Button
-@onready var KnowledgeSlider: Slider = $Button/KnowledgeSlider
-@onready var BefriendedIcon: Node = $Button/BefriendedIcon
+@onready var KnowledgeSlider: ProgressBar = $KnowledgeSlider
+@onready var BefriendedIcon: Node = $BefriendedIcon
 
 signal cryptid_selected(cryptid: CryptidData)
 func _ready() -> void:

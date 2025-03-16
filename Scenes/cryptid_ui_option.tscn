@@ -11,8 +11,8 @@ shader = ExtResource("1_5oy8w")
 shader_parameter/tint = Color(0, 0, 0, 1)
 
 [node name="CryptidUIOption" type="MarginContainer"]
-offset_right = 148.0
-offset_bottom = 128.0
+offset_right = 173.0
+offset_bottom = 144.0
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
@@ -25,8 +25,19 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_lpevr")
 custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
+size_flags_vertical = 0
 texture = ExtResource("2_wt5qf")
 stretch_mode = 5
+
+[node name="KnowledgeSlider" type="ProgressBar" parent="."]
+layout_mode = 2
+mouse_filter = 2
+max_value = 20.0
+rounded = true
+
+[node name="BefriendedIcon" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("5_81c2l")
 
 [node name="Button" type="Button" parent="."]
 custom_minimum_size = Vector2(156.5, 0)
@@ -38,27 +49,6 @@ autowrap_mode = 3
 icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
-
-[node name="KnowledgeSlider" type="HSlider" parent="Button"]
-layout_mode = 2
-offset_left = 1.0
-offset_top = 127.0
-offset_right = 157.0
-offset_bottom = 143.0
-focus_mode = 0
-mouse_filter = 2
-max_value = 20.0
-rounded = true
-editable = false
-scrollable = false
-
-[node name="BefriendedIcon" type="TextureRect" parent="Button"]
-layout_mode = 0
-offset_left = 62.0
-offset_top = 110.0
-offset_right = 102.0
-offset_bottom = 150.0
-texture = ExtResource("5_81c2l")
 
 [connection signal="focus_entered" from="Button" to="." method="_on_button_focus_entered"]
 [connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
